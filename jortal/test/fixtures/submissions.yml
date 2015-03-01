@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pid: 1
+  rid: 1
+  content: MyText
+
+two:
+  pid: 1
+  rid: 1
+  content: MyText
