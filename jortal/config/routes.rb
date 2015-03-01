@@ -2,10 +2,12 @@ Jortal::Application.routes.draw do
   resources :submissions
 
 
-  resources :projects
+#resources :projects
 
 
-  resources :courses
+  resources :courses do
+    resources :projects
+  end
 
 
   # The priority is based upon order of creation:

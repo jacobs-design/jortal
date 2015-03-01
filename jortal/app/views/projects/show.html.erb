@@ -1,15 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Cid:</b>
-  <%= @project.cid %>
-</p>
-
-<p>
   <b>Name:</b>
   <%= @project.name %>
 </p>
 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Edit', edit_course_project_path(@project) %> |
+<%= link_to 'Back', course_projects_path %>

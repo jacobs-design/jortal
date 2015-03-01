@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>Cid</th>
     <th>Name</th>
     <th></th>
     <th></th>
@@ -11,15 +10,14 @@
 
 <% @projects.each do |project| %>
   <tr>
-    <td><%= project.cid %></td>
     <td><%= project.name %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', course_project_path(course_id: project.course_id, id: project.id) %></td>
+    <td><%= link_to 'Edit', edit_course_project_path(course_id: project.course_id, id:project.id) %></td>
+    <td><%= link_to 'Destroy', course_project_path(course_id: project.course_id, id:project.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_course_project_path %>
