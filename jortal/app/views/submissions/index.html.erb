@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>Pid</th>
-    <th>Rid</th>
+    <th>Project</th>
+    <th>Requirement</th>
     <th>Content</th>
     <th></th>
     <th></th>
@@ -12,10 +12,10 @@
 
 <% @submissions.each do |submission| %>
   <tr>
-    <td><%= submission.pid %></td>
-    <td><%= submission.rid %></td>
+    <td><%= submission.project.name %></td>
+    <td><%= submission.requirement.name %></td>
     <td><%= submission.content %></td>
-    <td><%= link_to 'Show', submission %></td>
+    <td><%= link_to 'Show', [submission.project.course, submisson.project, submission] %></td>
     <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
     <td><%= link_to 'Destroy', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -24,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New Submission', new_submission_path %>
+<%= link_to 'New Submission', new_course_project_submission_path %>
