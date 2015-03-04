@@ -1,12 +1,8 @@
 Jortal::Application.routes.draw do
-  resources :submissions
-
-
-#resources :projects
-
-
   resources :courses do
-    resources :projects
+    resources :projects do
+      resources :submissions
+    end
   end
 
 

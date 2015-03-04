@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    @course = Course.find(params[:course_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +26,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
+    @course = Course.find(params[:course_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +37,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    @course = Course.find(params[:course_id])
   end
 
   # POST /projects
@@ -57,10 +60,11 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    @course = Course.find(params[:course_id])
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to [@course, @project], notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
