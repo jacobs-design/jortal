@@ -42,6 +42,14 @@ Scenario: add new privileged user using a privileged account
   And the user "Example Guy" should be able to download
   And the user "Example Guy" should be able to manage users
 
+Scenario: remove user using a privleged account
+  Given I am on the admin page as "Elite Admin"
+  When I click on "Remove Armando Fox"
+  And I click on "Yes, I'm sure."
+  And I click "Submit"
+  Then I should see "Successfully removed Armando Fox"
+  And there should not be a user named "Armando Fox"
+
 # Fail
 Scenario: add new unprivileged user using an unprivileged account
   When I go to the admin page as "Arlan Jaska"
