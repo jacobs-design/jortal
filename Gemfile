@@ -43,7 +43,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem "haml"
+gem 'haml'
+gem 'paperclip', '~> 4.2'
 
 group :test, :development do
     gem 'cucumber-rails', :require => false
