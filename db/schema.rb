@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150310061633) do
+ActiveRecord::Schema.define(:version => 20150310061107) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -20,18 +20,9 @@ ActiveRecord::Schema.define(:version => 20150310061633) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "requirements", :force => true do |t|
-    t.string   "name"
-    t.string   "type"
-    t.integer  "order"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "requirements", ["project_id"], :name => "index_requirements_on_project_id"
-
   create_table "submissions", :force => true do |t|
+    t.string   "title"
+    t.text     "desc"
     t.text     "content"
     t.integer  "project_id"
     t.datetime "created_at", :null => false

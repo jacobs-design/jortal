@@ -13,9 +13,7 @@ projects = [{:name => 'CS 169 Rails App', :desc => 'Make a rails app for a nonpr
 ]
 
 projects.each do |t|
-  p =Project.create(t)
-  Requirement.create(:name => 'Title', :type => 'string', :order => 0, :project_id => p.id)
-  Requirement.create(:name => 'Description', :type => 'text', :order => 1, :project_id => p.id)
-  Submission.create(:content => "JSON FILE URI FOR #{p.id}", :project_id => p.id)
+  p = Project.create(t)
+  Submission.create(:title => "TITLE FOR #{p.id}", :desc => "DESC FOR #{p.id}", :content => "JSON FILE URI FOR #{p.id}", :project_id => p.id)
 end
 
