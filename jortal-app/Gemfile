@@ -38,3 +38,8 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem "haml"
+
+group :test, :development do
+    gem 'cucumber-rails'
+    gem 'rake'
+end
