@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150310061107) do
+ActiveRecord::Schema.define(:version => 20150311084556) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -23,10 +23,13 @@ ActiveRecord::Schema.define(:version => 20150310061107) do
   create_table "submissions", :force => true do |t|
     t.string   "title"
     t.text     "desc"
-    t.text     "content"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   add_index "submissions", ["project_id"], :name => "index_submissions_on_project_id"

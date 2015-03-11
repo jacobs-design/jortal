@@ -3,7 +3,6 @@ class CreateSubmissions < ActiveRecord::Migration
     create_table :submissions do |t|
       t.string :title
       t.text :desc
-      t.text :content
       t.references :project
 
       t.timestamps

@@ -1,4 +1,7 @@
 class Submission < ActiveRecord::Base
   belongs_to :project
-  attr_accessible :title, :desc, :content, :project_id
+  attr_accessible :title, :desc, :attachment, :project_id
+  has_attached_file :attachment
+  # TODO: validate content type or else get pwned!!! read on github/thoughtbot/paperclip
+  do_not_validate_attachment_file_type :attachment
 end
