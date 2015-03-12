@@ -1,10 +1,17 @@
-%p#notice= notice
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Desc:
-  = @project.desc
-= link_to 'Edit', edit_project_path(@project)
-|
-= link_to 'Back', projects_path
+%h1 Listing submissions for #{@project.name}
+%table
+  %tr
+    %th Project
+    %th Title
+    %th
+    -# %th
+    %th
+  - @submissions.each do |submission|
+    %tr
+      %td= submission.project.name
+      %td= submission.title
+      %td= link_to 'Show', [submission.project, submission]
+      -# %td= link_to 'Edit', edit_project_submission_path(submission.project, submission)
+      %td= link_to 'Destroy', [submission.project, submission], method: :delete, data: { confirm: 'Are you sure?' }
+      %td= link_to 'Download'
+%br/
