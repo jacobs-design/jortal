@@ -1,17 +1,19 @@
-%h1 Listing projects
-%table
-  %tr
-    %th Name
-    %th Desc
-    %th
-    %th
-    %th
-  - @projects.each do |project|
+%h1 All Projects
+
+- #authcas stuff
+= "Hi, " + @username #add a before filter to get username from calnet
+= link_to 'Logout', logout_path
+
+%table#projects
+  %thead
     %tr
-      %td= project.name
-      %td= project.desc
-      %td= link_to 'Show', project
-      %td= link_to 'Edit', edit_project_path(project)
-      %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Project', new_project_path
+      %th{:class => session[:title_sort] ? 'hilite' : nil}= link_to "Project Name", projects_path(:title_sort => true, :id => "project_name")
+      %th= "Project Description"
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= link_to "#{project.title}", project_path(project)
+        %td= project.description
+
+= link_to 'Add Project', new_project_path 
+
