@@ -1,17 +1,28 @@
+= button_to 'Add Moderators'
+= button_to 'Delete Project'
+
+-# = form_tag likes_path, :id => 'likes_form', :method => :post do
 %h1 Listing submissions for #{@project.name}
 %table
   %tr
     %th Project
     %th Title
-    %th
+    %th Submit Time
+    %th Submitter
+    %th Like
+    %th Download
     -# %th
     %th
   - @submissions.each do |submission|
     %tr
-      %td= submission.project.name
+      %td= link_to submission.project.name, [submission.project, submission]
       %td= submission.title
-      %td= link_to 'Show', [submission.project, submission]
+      %td= 'time'
+      %td= 'submitter'
+      - project_submission_key = "#{@project.id}_#{submission.id}"
+      %td= check_box_tag "likes[#{project_submission_key}]"
+      -# %td= check_box_tag(name: "likes[project_submission_key]", checked: liked_submissions[project_submission_key])
       -# %td= link_to 'Edit', edit_project_submission_path(submission.project, submission)
-      %td= link_to 'Destroy', [submission.project, submission], method: :delete, data: { confirm: 'Are you sure?' }
+      -# %td= link_to 'Destroy', [submission.project, submission], method: :delete, data: { confirm: 'Are you sure?' }
       %td= link_to 'Download'
 %br/
