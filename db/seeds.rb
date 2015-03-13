@@ -14,6 +14,7 @@ projects = [{:name => 'CS 169 Rails App', :desc => 'Make a rails app for a nonpr
 
 projects.each do |t|
   p = Project.create(t)
+  # TODO: add seed attachment in db/fixtures
   Submission.create(:title => "TITLE FOR #{p.id}", :desc => "DESC FOR #{p.id}", :project_id => p.id)
 end
 

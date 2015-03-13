@@ -1,10 +1,13 @@
 %p#notice= notice
 %p
-  %b Content:
-  = @submission.content
-%p
   %b Project:
-  = @submission.project
-= link_to 'Edit', edit_submission_path(@submission)
-|
-= link_to 'Back', submissions_path
+  = @submission.project.name
+%p
+  %b Title:
+  = @submission.title
+%p
+  %b Description:
+  = @submission.desc
+-# = link_to 'Edit', edit_project_submission_path(@submission)
+- |
+= link_to 'Back', project_submissions_path
