@@ -3,6 +3,7 @@ Jortal::Application.routes.draw do
     resources :submissions, :except => :index
   end
   get 'projects/:id/submissions', :to => 'projects#show'
+  get '/', :to => 'projects#index'
 
 
   # The priority is based upon order of creation:
