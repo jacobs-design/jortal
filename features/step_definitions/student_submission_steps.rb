@@ -1,14 +1,22 @@
 require 'uri'
 require 'cgi'
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
 
-module WithinHelpders
-  def with_scope(locator)
-    locator ? within(*selector_for(locator)) { yield } : yield
+Given /the following project exists/ do |project_table|
+  ActiveRecord::Migrator.migrate('db/migrate')
+  project_table.hashes.each do |project|
+    Project.create(:name => project['name'],
+        :desc => project['desc'])
   end
 end
-World(WithinHelpers)
+
+Given /^(?:|I )am on the (.+?) project submission page$/ do |page_name|
+  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions/new'
+end
+
+Then /^(?:|I )should still be on the (.+?) project submission page$/ do |page_name|
+  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions/new'
+end
+
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
@@ -20,15 +28,15 @@ When /^(?:|I )upload in "([^"]*)" with "([^"]*)"$/ do |field, path|
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
-  click_link(link)
+  click_button(link)
 end
 
 Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
-    current_path.should == '/projects/' + Project.where(:title: page_name).pluck(:id)[0].to_s + '/submissions'
+    current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
   else
-    assert_equal ('/projects/' + Project.where(:title: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
+    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
   end
 end
 
