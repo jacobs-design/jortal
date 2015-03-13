@@ -1,5 +1,6 @@
 = form_for(@project) do |f|
   - if @project.errors.any?
+    %h4 Fill out all the fields!
     #error_explanation
       %h2
         = pluralize(@project.errors.count, "error")

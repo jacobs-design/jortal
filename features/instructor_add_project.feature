@@ -15,5 +15,5 @@ Background: instructor is on the projects list page and "CS 169 Software Enginee
 Scenario: add new project to the list of projects
 
     When I create a project with the name "CS 169 Software Engineering" and description "Learning Rails for days"
-    Then I am on the projects list page
-    And a new project named "CS 169 Software Engineering" with the description "Learning Rails for days" should appear on the projects list
+    Then I should be on the project show page for "CS 169 Software Engineering"
+    And a new project named "CS 169 Software Engineering" should exist
