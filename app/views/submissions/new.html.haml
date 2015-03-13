@@ -2,15 +2,16 @@
 
 %h1 Submit a Project to Jacobs Institute
 
-= form_tag project_submissions_path do
+= render 'form'
+//= form_tag project_submissions_path do
 
-  = label :submission, :title, 'Title'
-  = text_field :submission, 'title'
+//  = label :submission, :title, 'Title'
+//  = text_field :submission, 'title'
 
-  = label :submission, :desc, 'Description'
-  = text_area :submission, 'desc'
+//  = label :submission, :desc, 'Description'
+//  = text_area :submission, 'desc'
 
-  = label :submission, :attachment, 'File Upload'
-  = file_field :attachment, 'Browse'
+//  = label :submission, :attachment, 'File Upload'
+//  = file_field :attachment, 'Browse'
 
-  = submit_tag 'Submit'
+//  = submit_tag 'Submit'
