@@ -47,6 +47,7 @@ class SubmissionsController < ApplicationController
         format.html { redirect_to project_submissions_path, notice: 'Submission was successfully created.' }
         format.json { render json: @submission, status: :created, location: @submission }
       else
+        flash[:error] = "Missing requirement(s)"
         format.html { render action: "new" }
         format.json { render json: @submission.errors, status: :unprocessable_entity }
       end

@@ -28,4 +28,4 @@ Scenario: submit a project with missing required fields
     And I follow "Submit"
 
     Then I should still be on the CS 169 project submission page
-    And I should see "Missing required field"
+    And I should see "Missing requirement(s)"
