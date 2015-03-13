@@ -1,9 +1,5 @@
 %h1 All Projects
 
-- #authcas stuff
-= "Hi, " + @username #add a before filter to get username from calnet
-= link_to 'Logout', logout_path
-
 %table#projects
   %thead
     %tr
@@ -12,8 +8,8 @@
   %tbody
     - @projects.each do |project|
       %tr
-        %td= link_to "#{project.title}", project_path(project)
-        %td= project.description
+        %td= link_to "#{project.name}", project_path(project)
+        %td= project.desc
 
 = link_to 'Add Project', new_project_path 
 
