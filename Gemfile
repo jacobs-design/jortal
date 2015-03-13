@@ -31,6 +31,7 @@ end
 # in production environments by default.
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'therubyracer'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -53,3 +54,14 @@ end
 # To use debugger
 # gem 'debugger'
 
+gem 'haml'
+gem 'paperclip', '~> 4.2'
+
+group :test, :development do
+    gem 'cucumber-rails', :require => false
+    gem 'database_cleaner'
+    gem 'rake'
+    gem 'sqlite3'
+    gem 'rspec-rails', '~> 2.14.0'
+    gem 'simplecov'
+end
