@@ -77,8 +77,22 @@ class SubmissionsController < ApplicationController
     @submission.destroy
 
     respond_to do |format|
-      format.html { redirect_to submissions_url }
+      format.html { redirect_to project_submissions_url }
       format.json { head :no_content }
     end
   end
+
+  protected
+  def find_project
+    if params[:project_id]
+      Project.find(params[:project_id])
+    end
+  end
+  helper_method :find_project
+
+  protected
+  def find_project_submissions
+    Submission.where(:project_id => find_project.id)
+  end
+  helper_method :find_project_submissions
 end
