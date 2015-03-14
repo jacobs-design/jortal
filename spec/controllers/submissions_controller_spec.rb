@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectsController do
+describe SubmissionsController do
     describe 'show submissions' do
         before :each do
             Project.create(name: "CS169", desc: "saasbook")
