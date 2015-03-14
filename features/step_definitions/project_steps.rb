@@ -1,4 +1,9 @@
 #successfully add a new project
+Given /^I am an admin$/ do
+  User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: true)
+  CASClient::Frameworks::Rails::Filter.fake("991334")
+end
+
 Given /^I am on the projects list page$/ do
   visit "/projects"
 end
