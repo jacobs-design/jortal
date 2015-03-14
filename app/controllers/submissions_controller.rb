@@ -44,8 +44,8 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to project_submissions_path, notice: 'Submission was successfully created.' }
-        format.json { render json: @submission, status: :created, location: @submission }
+        redirect_to thank_you_path
+        return
       else
         flash[:error] = "Missing requirement(s)"
         format.html { render action: "new" }
@@ -80,6 +80,9 @@ class SubmissionsController < ApplicationController
       format.html { redirect_to project_submissions_url }
       format.json { head :no_content }
     end
+  end
+
+  def thank_you
   end
 
   protected
