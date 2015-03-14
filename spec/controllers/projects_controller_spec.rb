@@ -24,9 +24,17 @@ describe ProjectsController do
     end
   end
   describe 'POST #create' do
-    it 'redirects to the newly created project page' do
-      post :create, :project => {name: 'CS 169', desc: 'Rails app dev'}
-      expect(response).to redirect_to project_path(Project.last)
+    context 'all required fields provided' do
+      it 'redirects to the newly created project page' do
+        post :create, :project => {name: 'CS 169', desc: 'Rails app dev'}
+        expect(response).to redirect_to project_path(Project.last)
+      end
+    end
+    context 'some required field(s) missing' do
+      it 'renders the new project template' do
+        post :create, :project => {name: "missing description"}
+        expect(response).to render_template('new')
+      end
     end
   end
   describe 'GET #new' do
@@ -59,7 +67,6 @@ describe ProjectsController do
       it 'redirects to the new project submission page' do
         CASClient::Frameworks::Rails::Filter.fake('1337')
         get :show, :id => @project1.id
-        puts response.body
         expect(response).to redirect_to new_project_submission_url(@project1)
       end
     end
