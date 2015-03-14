@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     if not is_user?
-        redirect_to new_project_submission_url(@project) and return
+      redirect_to new_project_submission_url(@project) and return
     end
     @submissions = Submission.where(:project_id => @project.id)
 
