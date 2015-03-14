@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe SubmissionsController do
     before :each do
+        @user = User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: false)
+        CASClient::Frameworks::Rails::Filter.fake("991334")
         @project = Project.create(name: "CS169", desc: "saasbook")
         @submission = Submission.create(title: "swoject", desc: "super swole project", attachment: File.new(Rails.root + 'spec/fixtures/files/tester.txt'), project_id: @project.id)
     end
