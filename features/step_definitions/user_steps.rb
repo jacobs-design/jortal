@@ -6,8 +6,8 @@ Given(/^I am on the users page with no account$/) do
   visit "/users"
 end
 
-Given /^I am on the users page as "(.*?)"$/ do |name|
-  uid = User.where(name: name).first.uid
+Given /^I am on the users page as "(.*?)"$/ do |u1|
+  uid = User.where(name: u1).first.uid
   CASClient::Frameworks::Rails::Filter.fake(uid.to_s)
   visit "/users"
 end
