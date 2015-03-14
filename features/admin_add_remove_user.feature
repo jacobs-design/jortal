@@ -18,22 +18,11 @@ Scenario: add new unprivileged user with no account
   Given I am on the users page with no account
   Then I should be on the projects list page
 
-Scenario: add new unprivileged user using an unprivileged account
-  Given I am on the projects list page
-  When I go to the users page as "Kenneth Lam"
-  Then I should be on the projects list page
-
 Scenario: add existing UID using a privileged account
   Given I am on the users page as "Arlan Jaska"
   When I add a new user with name "Bad Person" and email "badperson@badpeople.org" and uid "994946" and admin "False"
   Then I should not see "Bad Person"
   And there should not be a user named "Bad Person"
-
-Scenario: add user with a malformed email address using a privileged account
-  Given I am on the users page as "Arlan Jaska"
-  When I add a new user with name "Malformed Email" and email "bad email !!$$$@@" and uid "12345" and admin "False"
-  Then I should not see "Malformed Email"
-  And there should not be a user named "Malformed Email"
 
 # Happy
 Scenario: add new unprivileged user using a privileged account
