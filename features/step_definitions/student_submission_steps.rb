@@ -2,7 +2,6 @@ require 'uri'
 require 'cgi'
 
 Given /the following project exists/ do |project_table|
-  ActiveRecord::Migrator.migrate('db/migrate')
   project_table.hashes.each do |project|
     Project.create(:name => project['name'],
         :desc => project['desc'])
