@@ -3,14 +3,14 @@ class SubmissionsController < ApplicationController
   before_filter :check_user!, except: [:new, :create, :thank_you]
   # GET /submissions
   # GET /submissions.json
-  def index
-    @submissions = Submission.all
+#  def index
+#    @submissions = Submission.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @submissions }
-    end
-  end
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @submissions }
+#    end
+#  end
 
   # GET /submissions/1
   # GET /submissions/1.json

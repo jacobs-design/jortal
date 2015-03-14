@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe SubmissionsController do
+    render_views
     before :each do
         @user = User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: false)
         CASClient::Frameworks::Rails::Filter.fake("991334")
@@ -18,6 +19,13 @@ describe SubmissionsController do
         it 'should show the submission thank you page' do
             get :thank_you
             expect(response).to be_success
+        end
+    end
+
+    describe 'show submission' do
+        it 'should show the student submission' do
+            get :show, :project_id => @project.id, :id => @submission.id
+            expect(response.body).to have_content("super swole project")
         end
     end
 end
