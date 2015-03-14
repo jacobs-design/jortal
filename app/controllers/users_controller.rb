@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter, except: [:index, :show]
+  before_filter :check_user!
   before_filter :check_admin!, except: [:index, :show]
 
   # GET /users
