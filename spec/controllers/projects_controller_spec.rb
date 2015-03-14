@@ -4,6 +4,7 @@ describe ProjectsController do
   render_views
   before :each do
     @user = User.create(name: "Kenneth", email: "kennethiscool@berkeley.edu", uid: 994946, admin: true)
+    @not_user = User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: false)
     CASClient::Frameworks::Rails::Filter.fake('994946')
     @project1 = Project.create(name: 'CS 169', desc: 'Rails app development')
     @project2 = Project.create(name: 'CS 186', desc: 'Apache Spark business')
@@ -23,9 +24,17 @@ describe ProjectsController do
     end
   end
   describe 'POST #create' do
-    it 'redirects to the newly created project page' do
-      post :create, :project => {name: 'CS 169', desc: 'Rails app dev'}
-      expect(response).to redirect_to project_path(Project.last)
+    context 'all required fields provided' do
+      it 'redirects to the newly created project page' do
+        post :create, :project => {name: 'CS 169', desc: 'Rails app dev'}
+        expect(response).to redirect_to project_path(Project.last)
+      end
+    end
+    context 'some required field(s) missing' do
+      it 'renders the new project template' do
+        post :create, :project => {name: "missing description"}
+        expect(response).to render_template('new')
+      end
     end
   end
   describe 'GET #new' do
@@ -41,14 +50,25 @@ describe ProjectsController do
 #    end
 #  end
   describe 'GET #show' do
-    it 'shows the list of associated submissions' do
+    before :each do
       @submission1_1 = Submission.create(
         title: 'submission test',
         desc: 'test submission desc',
         attachment: File.new(Rails.root + 'spec/fixtures/files/tester.txt'),
         project_id: @project1.id)
-      get :show, :id => @submission1_1.id
-      expect(response).to render_template('show')
+    end
+    context 'authenticated and a user' do
+      it 'shows the list of associated submissions' do
+        get :show, :id => @project1.id
+        expect(response).to render_template('show')
+      end
+    end
+    context 'authentiated and NOT a user' do
+      it 'redirects to the new project submission page' do
+        CASClient::Frameworks::Rails::Filter.fake('1337')
+        get :show, :id => @project1.id
+        expect(response).to redirect_to new_project_submission_url(@project1)
+      end
     end
   end
 #  describe 'PUT #update' do

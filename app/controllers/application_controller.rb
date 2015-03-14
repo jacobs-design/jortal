@@ -11,10 +11,12 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user!
-    redirect_to :back, notice: "You must be logged in to do that" unless is_user?
+    back = request.env["HTTP_REFERER"] || projects_url
+    redirect_to back, notice: "You must be logged in to do that" unless is_user?
   end
 
   def check_admin!
-    redirect_to :back, notice: "You must be an admin to do that" unless is_admin?
+    back = request.env["HTTP_REFERER"] || projects_url
+    redirect_to back, notice: "You must be an admin to do that" unless is_admin?
   end
 end
