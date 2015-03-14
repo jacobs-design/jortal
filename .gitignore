@@ -37,3 +37,7 @@ bower.json
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore vim temporary files
+*.swp
+*.swo
