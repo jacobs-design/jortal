@@ -7,6 +7,7 @@ Jortal::Application.routes.draw do
   end
   get 'projects/:id/submissions', :to => 'projects#show'
   get '/', :to => 'projects#index'
+  get 'submissions/thank_you', :to => 'submissions#thank_you', as: 'thank_you'
 
 
   # The priority is based upon order of creation:
