@@ -1,5 +1,5 @@
 = button_to 'Add Moderators'
-= button_to 'Delete Project'
+= button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }
 
 -# = form_tag likes_path, :id => 'likes_form', :method => :post do
 %h1 Listing submissions for #{@project.name}

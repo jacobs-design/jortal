@@ -1,5 +1,5 @@
 Jortal::Application.routes.draw do
-  resources :projects do
+  resources :projects , :except => [:edit, :update] do
     resources :submissions, :except => :index
   end
   get 'projects/:id/submissions', :to => 'projects#show'
