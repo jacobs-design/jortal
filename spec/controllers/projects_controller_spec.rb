@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  render_views
   before :each do
+    @user = User.create(name: "Kenneth", email: "kennethiscool@berkeley.edu", uid: 994946, admin: true)
+    CASClient::Frameworks::Rails::Filter.fake('994946')
     @project1 = Project.create(name: 'CS 169', desc: 'Rails app development')
     @project2 = Project.create(name: 'CS 186', desc: 'Apache Spark business')
   end
