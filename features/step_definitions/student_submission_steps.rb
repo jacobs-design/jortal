@@ -1,6 +1,11 @@
 require 'uri'
 require 'cgi'
 
+Given /^I am a Student$/ do
+  User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: false)
+  CASClient::Frameworks::Rails::Filter.fake("991334")
+end
+
 Given /the following project exists/ do |project_table|
   project_table.hashes.each do |project|
     Project.create(:name => project['name'],
@@ -33,9 +38,11 @@ end
 Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
-    current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
+      current_path.should == '/submissions/thank_you'
+#    current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
   else
-    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
+      assert_equal ('/submissions/thank_you'), current_path
+#    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
   end
 end
 

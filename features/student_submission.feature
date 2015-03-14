@@ -5,8 +5,9 @@ Feature: upload a project
     I want to submit my project with the required submission details
 
 Background: course exists and is ready for submissions
+    Given I am a Student
 
-    Given the following project exists
+    And the following project exists
     | name   | desc                 |
     | CS 169 | Software Engineering |
 
