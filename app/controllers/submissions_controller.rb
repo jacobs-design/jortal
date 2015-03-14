@@ -33,9 +33,9 @@ class SubmissionsController < ApplicationController
   end
 
   # GET /submissions/1/edit
-#  def edit
-#    @submission = Submission.find(params[:id])
-#  end
+  def edit
+    @submission = Submission.find(params[:id])
+  end
 
   # POST /submissions
   # POST /submissions.json
