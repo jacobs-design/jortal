@@ -50,6 +50,7 @@ end
 group :test, :development do
     gem 'cucumber-rails', :require => false
     gem 'database_cleaner'
+    gem 'erb2haml'
     gem 'rake'
     gem 'sqlite3'
     gem 'rspec-rails', '~> 2.14.0'
