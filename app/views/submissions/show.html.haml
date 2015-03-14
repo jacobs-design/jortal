@@ -8,6 +8,8 @@
 %p
   %b Description:
   = @submission.desc
--# = link_to 'Edit', edit_project_submission_path(@submission)
+%p
+  %b Attachment:
+  = link_to "Click here to download #{@submission.attachment.original_filename}", @submission.attachment.url(:original, false) 
 - |
 = link_to 'Back', project_submissions_path
