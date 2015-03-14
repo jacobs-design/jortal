@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
+  before_filter CASClient::Frameworks::Rails::Filter, except: [:index, :show]
+  before_filter :check_admin!, except: [:index, :show]
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    @who = session[:cas_user]
 
     respond_to do |format|
       format.html # index.html.erb

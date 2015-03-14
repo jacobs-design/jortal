@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  before_filter CASClient::Frameworks::Rails::Filter
+  before_filter :check_admin!, except: [:index, :show]
+
   # GET /projects
   # GET /projects.json
   def index
@@ -14,6 +17,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    if not is_user?
+        redirect_to new_project_submission_url(@project) and return
+    end
     @submissions = Submission.where(:project_id => @project.id)
 
     respond_to do |format|
