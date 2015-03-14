@@ -1,4 +1,6 @@
 class SubmissionsController < ApplicationController
+  before_filter CASClient::Frameworks::Rails::Filter
+  before_filter :check_user!, except: [:new, :create]
   # GET /submissions
   # GET /submissions.json
   def index

@@ -1,4 +1,7 @@
 Jortal::Application.routes.draw do
+  resources :users
+
+
   resources :projects do
     resources :submissions, :except => :index
   end
