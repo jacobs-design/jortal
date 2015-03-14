@@ -3,15 +3,6 @@ class SubmissionsController < ApplicationController
   before_filter :check_user!, except: [:new, :create, :thank_you]
   # GET /submissions
   # GET /submissions.json
-#  def index
-#    @submissions = Submission.all
-
-#    respond_to do |format|
-#      format.html # index.html.erb
-#      format.json { render json: @submissions }
-#    end
-#  end
-
   # GET /submissions/1
   # GET /submissions/1.json
   def show
@@ -34,11 +25,6 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  # GET /submissions/1/edit
-  def edit
-    @submission = Submission.find(params[:id])
-  end
-
   # POST /submissions
   # POST /submissions.json
   def create
@@ -51,22 +37,6 @@ class SubmissionsController < ApplicationController
       else
         flash[:error] = "Missing requirement(s)"
         format.html { render action: "new" }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /submissions/1
-  # PUT /submissions/1.json
-  def update
-    @submission = Submission.find(params[:id])
-
-    respond_to do |format|
-      if @submission.update_attributes(params[:submission])
-        format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @submission.errors, status: :unprocessable_entity }
       end
     end
