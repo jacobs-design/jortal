@@ -49,19 +49,17 @@ end
 Then(/^I should be on the new project page$/) do
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
-    current_path.should == "/projects/new"
+    current_path.should == "/projects"
   else
-    assert_equal "/projects/new", current_path
+    assert_equal "/projects", current_path
   end
 end
 
 Then(/^I should see the error message: "(.*?)"$/) do |error|
-  if page.find_by_id("error_explanation")
-  	if page.find_by_id("error_explanation").respond_to? :should
-  		page.find_by_id("error_explanation").should have_content(error)
-  	else
-  		assert page.find_by_id("error_explanation").has_content(error)
-  	end
+  if page.respond_to? :should
+    page.should have_content(error)
+  else
+    assert page.has_content?(error)
   end
 end
 
