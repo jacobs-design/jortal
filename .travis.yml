@@ -10,4 +10,8 @@ script:
 before_script:
   - mysql -e 'create database jortal_test'
   - psql -c 'create database jortal_test' -U postgres
+  - bundle exec rake db:migrate
+  - bundle exec rake db:test:prepare
 bundler_args: --binstubs=./bundler_stubs
+services:
+  - elasticsearch
