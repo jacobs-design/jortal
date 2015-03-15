@@ -6,7 +6,7 @@ env:
   - DB=mysql
   - DB=postgresql
 script:
-  - RAILS_ENV=bundle exec rake db:migrate --trace
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
 before_script:
   - mysql -e 'create database jortal_test'
   - psql -c 'create database jortal_test' -U postgres

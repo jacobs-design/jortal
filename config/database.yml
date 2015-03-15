@@ -24,7 +24,7 @@ defaults: &defaults
 development:
   <<: *defaults
  
-test:
+test: &test
   <<: *defaults
  
 production:
