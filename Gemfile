@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '~> 3.2'
 gem 'sass-rails', '>= 3.2'
 gem 'sprockets'
 gem 'autoprefixer-rails'
+gem 'mysql2'
 
 # Interface with AuthCAS
 gem 'rubycas-client'
