@@ -1,3 +1,16 @@
 language: ruby
 rvm:
+  - 1.9.2
   - 1.9.3
+env: 
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec/
+before_script:
+  - mysql -e 'create database jortal_test'
+  - psql -c 'create database jortal_test' -U postrgres
+bundler_args: --binstubs=./bundler_stubs
