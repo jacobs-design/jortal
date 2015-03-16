@@ -8,7 +8,7 @@ script:
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
 before_script:
-  - psql -c 'create database jortal_test' -U postgres
+  - psql -c 'create user saasbook; create database jortal_test;' -U postgres
 bundler_args: --binstubs=./bundler_stubs
 services:
   - elasticsearch
