@@ -1,16 +1,14 @@
 class ProjectsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
   before_filter :check_admin!, except: [:index, :show]
+  respond_to :html, :json
 
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
-    end
+    respond_with @projects
   end
 
   # GET /projects/1
@@ -22,10 +20,7 @@ class ProjectsController < ApplicationController
     end
     @submissions = Submission.where(:project_id => @project.id)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @project }
-    end
+    respond_with @project
   end
 
   # GET /projects/new
@@ -33,10 +28,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @project }
-    end
+    respond_with @project
   end
 
   # GET /projects/1/edit
