@@ -1,26 +1,15 @@
-sqlite: &sqlite
-  adapter: sqlite3
-  database: db/<%= Rails.env %>.sqlite3
- 
-mysql: &mysql
-  adapter: mysql2
-  username: root
-  password:
-  database: myapp_<%= Rails.env %>
- 
-postgresql: &postgresql
-  adapter: postgresql
-  username: postgres
-  password:
-  database: myapp_<%= Rails.env %>
-  min_messages: ERROR
- 
 defaults: &defaults
   pool: 5
   timeout: 5000
+  database: jortal_<%= Rails.env %>
+  adapter: postgresql
+  username: postgres
+  password:
+
+postgresql: &postgresql
+  <<: *defaults
   host: localhost
-  <<: *<%= ENV['DB'] || "postgresql" %>
- 
+
 development:
   <<: *defaults
  
@@ -29,7 +18,6 @@ test: &test
  
 production:
   <<: *defaults
-  # TODO: Add erb-echo of credentials
 
 cucumber:
   <<: *test

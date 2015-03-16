@@ -1,6 +1,8 @@
 class SubmissionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
   before_filter :check_user!, except: [:new, :create, :thank_you]
+  respond_to :html, :json
+
   # GET /submissions
   # GET /submissions.json
   # GET /submissions/1
@@ -8,10 +10,7 @@ class SubmissionsController < ApplicationController
   def show
     @submission = Submission.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @submission }
-    end
+    respond_with @submission
   end
 
   # GET /submissions/new
@@ -19,10 +18,7 @@ class SubmissionsController < ApplicationController
   def new
     @submission = Submission.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @submission }
-    end
+    respond_with @submission
   end
 
   # POST /submissions

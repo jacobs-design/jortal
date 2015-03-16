@@ -73,7 +73,6 @@ Then(/^there should not be a user named "(.*?)"$/) do |name|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
-  puts page.html
   if page.respond_to? :should
     page.should have_no_content(text)
   else
