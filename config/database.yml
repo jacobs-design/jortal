@@ -3,7 +3,7 @@ defaults: &defaults
   timeout: 5000
   database: jortal_<%= Rails.env %>
   adapter: postgresql
-  username: saasbook
+  username: postgres
   password:
 
 postgresql: &postgresql
