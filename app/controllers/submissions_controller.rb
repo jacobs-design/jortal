@@ -61,10 +61,4 @@ class SubmissionsController < ApplicationController
     end
   end
   helper_method :find_project
-
-  protected
-  def find_project_submissions
-    Submission.where(:project_id => find_project.id)
-  end
-  helper_method :find_project_submissions
 end
