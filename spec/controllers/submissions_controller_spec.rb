@@ -34,7 +34,7 @@ describe SubmissionsController do
             submission_id = "1234"
             submission = double('fake submission').as_null_object
             Submission.stub(:find).with(submission_id).and_return(submission)
-            submission.should_receieve(:destroy)
+            submission.should_receive(:destroy)
             delete :destroy, :project_id => @project.id, :id => submission_id
         end
     end
@@ -42,7 +42,6 @@ describe SubmissionsController do
     describe 'create submission successfully' do
         it 'should create submission with provided parameters' do
             submission = double('fake submission').as_null_object
-            
 
             Submission.should_receive(:create)
             Submission.create
