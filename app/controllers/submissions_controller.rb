@@ -26,16 +26,17 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(params[:submission])
 
-    respond_to do |format|
-      if @submission.save
-        redirect_to thank_you_path
-        return
-      else
-        flash[:error] = "Missing requirement(s)"
-        format.html { render action: "new" }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with @submission
+#    respond_to do |format|
+#      if @submission.save
+#        redirect_to thank_you_path
+#        return
+#      else
+#        flash[:error] = "Missing requirement(s)"
+#        format.html { render action: "new" }
+#        format.json { render json: @submission.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # DELETE /submissions/1
@@ -44,10 +45,11 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     @submission.destroy
 
-    respond_to do |format|
-      format.html { redirect_to project_submissions_url }
-      format.json { head :no_content }
-    end
+    respond_with @submission
+#    respond_to do |format|
+#      format.html { redirect_to project_submissions_url }
+#      format.json { head :no_content }
+#    end
   end
 
   def thank_you
