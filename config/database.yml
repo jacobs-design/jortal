@@ -1,23 +1,29 @@
 defaults: &defaults
   pool: 5
   timeout: 5000
+
+postgresql: &postgresql
+  <<: *defaults
+  host: localhost
   database: jortal_<%= Rails.env %>
   adapter: postgresql
   username: postgres
   password:
 
-postgresql: &postgresql
+sqlite3: &sqlite3
   <<: *defaults
-  host: localhost
+  adapter: sqlite3
+  database: db/<%= Rails.env %>.sqlite3
 
 development:
-  <<: *defaults
+  <<: *sqlite3
  
 test: &test
-  <<: *defaults
+  <<: *sqlite3
  
 production:
   <<: *defaults
 
 cucumber:
   <<: *test
+
