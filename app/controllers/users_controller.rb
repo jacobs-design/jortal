@@ -59,6 +59,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       flash[:notice] = 'User was successfully updated.'
+    end
     respond_with @user
 #    respond_to do |format|
 #      if @user.update_attributes(params[:user])
