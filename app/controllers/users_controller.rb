@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
+    flash[:notice] = 'User was successfully created.' if @user.save
     respond_with @user
 #    respond_to do |format|
 #      if @user.save
@@ -56,6 +57,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+    if @user.update_attributes(params[:user])
+      flash[:notice] = 'User was successfully updated.'
     respond_with @user
 #    respond_to do |format|
 #      if @user.update_attributes(params[:user])
