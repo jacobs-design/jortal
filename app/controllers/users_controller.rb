@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
   before_filter :check_user!
   before_filter :check_admin!, except: [:index, :show]
+  respond_to :html, :json
 
   # GET /users
   # GET /users.json
@@ -9,10 +10,7 @@ class UsersController < ApplicationController
     @users = User.all
     @who = session[:cas_user]
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+    respond_with @users
   end
 
   # GET /users/1
@@ -20,10 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
+    respond_with @user
   end
 
   # GET /users/new
@@ -31,10 +26,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
+    respond_with @user
   end
 
   # GET /users/1/edit
@@ -47,15 +39,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'User was successfully created.' if @user.save
+    respond_with @user
+#    respond_to do |format|
+#      if @user.save
+#        format.html { redirect_to @user, notice: 'User was successfully created.' }
+#        format.json { render json: @user, status: :created, location: @user }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @user.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /users/1
@@ -63,15 +57,19 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update_attributes(params[:user])
+      flash[:notice] = 'User was successfully updated.'
     end
+    respond_with @user
+#    respond_to do |format|
+#      if @user.update_attributes(params[:user])
+#        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+#        format.json { head :no_content }
+#      else
+#        format.html { render action: "edit" }
+#        format.json { render json: @user.errors, status: :unprocessable_entity }
+#      end
+#    end
   end
 
   # DELETE /users/1
@@ -80,9 +78,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    respond_with @user
+#    respond_to do |format|
+#      format.html { redirect_to users_url }
+#      format.json { head :no_content }
+#    end
   end
 end
