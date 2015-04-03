@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-projects = [{:name => 'CS 169 Rails App', :desc => 'Make a rails app for a nonprofit bruh.'},
-            {:name => 'CS 186 Spark Intro', :desc => 'Good luck! LOL'},
+projects = [{:name => 'CS 169 Rails App', :desc => 'Make a rails app for a nonprofit bruh.', :like => false},
+            {:name => 'CS 186 Spark Intro', :desc => 'Good luck! LOL', :like => true},
             {:name => 'CS 168 Distance-Vector Router', :desc => 'Encapsulate! Create a DV router class that can be instantiated and work along other router objects in a simulated network.'},
             {:name => 'CS 161 Password Cracker', :desc => 'Something about rainbow tables to do the thing.'}
 ]
@@ -22,3 +22,4 @@ projects.each do |t|
                     )
 end
 
+User.create(uid: 994946)

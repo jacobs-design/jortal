@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-
+    
     respond_with @projects
   end
 
@@ -19,6 +19,22 @@ class ProjectsController < ApplicationController
       redirect_to new_project_submission_url(@project) and return
     end
     @submissions = Submission.where(:project_id => @project.id)
+
+    @all_submissions = Submission.all
+    @likes = params[:likes]
+    if @likes.nil?
+      @likes = []
+    else
+      @all_submissions.each do |submission|
+        if @likes.include? "#{@project.id}_#{submission.id}"
+          submission.like = true
+          submission.save!
+        else
+          submission.like = false
+          submission.save!
+        end
+      end
+    end
 
     respond_with @project
   end
