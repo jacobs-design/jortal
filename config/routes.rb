@@ -1,7 +1,7 @@
 Jortal::Application.routes.draw do
   resources :users
   resources :projects , :except => [:edit, :update] do
-    resources :submissions, :except => :index
+    resources :submissions, :except => [:index, :destroy]
   end
   get 'projects/:id/submissions', :to => 'projects#show'
   post 'projects/:id', :to => 'projects#show'
