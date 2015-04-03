@@ -1,9 +1,13 @@
 Jortal::Application.routes.draw do
   resources :users
   resources :projects , :except => [:edit, :update] do
-    resources :submissions, :except => :index
+    resources :submissions, :except => [:index, :destroy]
+    collection do
+      get 'submit_submission', :to => 'projects#submit_submission', as: 'submit_submission'
+    end
   end
   get 'projects/:id/submissions', :to => 'projects#show'
+  post 'projects/:id', :to => 'projects#show'
   get '/', :to => 'projects#index'
   get 'submissions/thank_you', :to => 'submissions#thank_you', as: 'thank_you'
 

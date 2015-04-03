@@ -10,6 +10,8 @@ gem 'bootstrap-sass', '~> 3.2'
 gem 'sass-rails', '>= 3.2'
 gem 'sprockets'
 gem 'autoprefixer-rails'
+gem 'pg'
+gem 'activerecord-postgresql-adapter'
 
 # Interface with AuthCAS
 gem 'rubycas-client'
@@ -18,8 +20,6 @@ gem 'rubycas-client'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :production, :staging do
-  gem 'pg'
-  gem 'activerecord-postgresql-adapter'
   gem 'rails_12factor'
 end
 
