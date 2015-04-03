@@ -10,7 +10,7 @@ end
 
 Given /^the following projects exist:$/ do |table|
   table.hashes.each do |project|
-  	Project.create(name: project[:name], desc: project[:desc])
+  	Project.create(id: project[:id], name: project[:name], desc: project[:desc])
   end
 end
 

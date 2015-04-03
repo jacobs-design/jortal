@@ -53,3 +53,40 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
     assert page.has_content?(text)
   end
 end
+
+
+
+#FROM THIS POINT ONWARD: JACK AND KENNETH CLAIM THIS DOMAIN
+Given /^the following submissions exist:$/ do |table|
+  table.hashes.each do |submission|
+    Submission.create(title: project[:title], desc: project[:desc], project_id: project[:project_id],
+      attachment_file_name: project[:attachment_file_name], like: project[:like])
+  end
+end
+
+When /I (un)?like the following submissions: (.*)/ do |unlike, submission_list|
+  submission_list.delete(" ").split(",").each do |submission|
+    @submission = Submission.find_by name: submission
+    if unlike
+      uncheck("likes[#{@submission.project_id}_#{@submission.id}]")
+    else
+      check("likes[#{@submission.project_id}_#{@submission.id}]")
+    end
+  end
+  click_button("Submit Likes")
+end
+
+Then /^(?:|I )should be on the submissions page for "(.*)"$/ do |page_name|
+  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
+end
+
+Then /the following submissions should be (un)?liked: (.*)/ do |unliked, submission_list|
+  submission_list.delete(" ").split(",").each do |submission|
+    @submission = Submission.find_by name: submission
+    if unliked
+      @submission.like == false
+    else
+      @submission.like == true
+    end
+  end
+end
