@@ -7,7 +7,7 @@ $("#users").ready(function () {
     $("#users_table_form")[0].action = $("#users_table_form")[0].action.slice(0, $("#users_table_form")[0].action.lastIndexOf('/')) + '/' + user_id;
   }
 
-  var generate_form_in_table = function () {
+  function generate_form_in_table() {
     var wanted_nodes = $("#new_user > input"),
       new_row = "<tr class='users_form_row'>",
       i;
