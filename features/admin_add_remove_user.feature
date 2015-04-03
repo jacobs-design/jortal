@@ -9,8 +9,8 @@ Background: users in database
   Given the following users exist:
   | name        | email                       | uid     | admin |
   | Arlan Jaska | ajaska@berkeley.edu         | 1033859 | true  |
-  | Terry Tsai  | iliveinabucket@berkeley.edu | 988433  | false |
-  | Jack Chou   | jackchou@berkeley.edu       | 991334  | true  |
+  | Terry Tsai  | iliveinabucket@berkeley.edu | 988433  | true  |
+  | Jack Chou   | jackchou@berkeley.edu       | 991334  | false |
   | Kenneth Lam | lam.c.kenneth@berkeley.edu  | 994946  | false |
 
 # Fail
@@ -33,7 +33,7 @@ Scenario: add new unprivileged user using a privileged account
   And the user "Mina Li" should not be an admin
 
 Scenario: add new privileged user using a privileged account
-  Given I am on the users page as "Jack Chou"
+  Given I am on the users page as "Terry Tsai"
   When I add a new user with name "Albert Hu" and email "alberthu@berkeley.edu" and uid "998455" and admin "True"
   Then I should see "Albert Hu"
   And there should be a user named "Albert Hu"
