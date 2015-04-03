@@ -19,8 +19,13 @@ projects.each do |t|
                     :desc => "DESC FOR #{p.id}",
                     :project_id => p.id,
                     :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
-                    :like => false
-                    )
+                    :like => false)
+
+  Submission.create(:title => "second title for #{p.id}",
+                    :desc => "second desc for #{p.id}",
+                    :project_id => p.id,
+                    :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
+                    :like => true)
 end
 
 User.create(uid: 994946)
