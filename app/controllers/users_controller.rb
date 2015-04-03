@@ -12,20 +12,6 @@ class UsersController < ApplicationController
     respond_with @users
   end
 
-  # GET /users/1
-  def show
-    @user = User.find(params[:id])
-
-    respond_with @user
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-
-    respond_with @user
-  end
-
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
@@ -36,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     flash[:notice] = 'User was successfully created.' if @user.save
-    respond_with @user
+    redirect_to users_url
   end
 
   # PUT /users/1
@@ -46,7 +32,8 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       flash[:notice] = 'User was successfully updated.'
     end
-    respond_with @user
+    # respond_with @user
+    redirect_to users_url
   end
 
   # DELETE /users/1
