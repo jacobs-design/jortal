@@ -59,8 +59,8 @@ end
 #FROM THIS POINT ONWARD: JACK AND KENNETH CLAIM THIS DOMAIN
 Given /^the following submissions exist:$/ do |table|
   table.hashes.each do |submission|
-    Submission.create(title: project[:title], desc: project[:desc], project_id: project[:project_id],
-      attachment_file_name: project[:attachment_file_name], like: project[:like])
+    Submission.create(title: submission[:title], desc: submission[:desc], project_id: submission[:project_id],
+      attachment_file_name: submission[:attachment_file_name], like: submission[:like])
   end
 end
 
@@ -77,16 +77,23 @@ When /I (un)?like the following submissions: (.*)/ do |unlike, submission_list|
 end
 
 Then /^(?:|I )should be on the submissions page for "(.*)"$/ do |page_name|
-  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+      current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
+#    current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
+  else
+      assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s), current_path
+#    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
+  end
 end
 
 Then /the following submissions should be (un)?liked: (.*)/ do |unliked, submission_list|
   submission_list.delete(" ").split(",").each do |submission|
     @submission = Submission.find_by name: submission
     if unliked
-      @submission.like == false
+      @submission.like.should == false
     else
-      @submission.like == true
+      @submission.like.should == true
     end
   end
 end
