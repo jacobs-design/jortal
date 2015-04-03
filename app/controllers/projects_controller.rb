@@ -20,19 +20,12 @@ class ProjectsController < ApplicationController
     end
     @submissions = Submission.where(:project_id => @project.id)
 
-    @all_submissions = Submission.all
-    @likes = params[:likes]
-    if @likes.nil?
-      @likes = []
-    else
-      @all_submissions.each do |submission|
-        if @likes.include? "#{@project.id}_#{submission.id}"
-          submission.like = true
-          submission.save!
-        else
-          submission.like = false
-          submission.save!
-        end
+    if request.post?
+      @likes = params.has_key?(:likes) ? params[:likes] : []
+      @submissions.each do |submission|
+        like_submission = @likes.include? "#{@project.id}_#{submission.id}"
+        submission.like = like_submission
+        submission.save!
       end
     end
 
