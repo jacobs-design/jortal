@@ -2,11 +2,17 @@ require 'spec_helper'
 
 describe ProjectsController do
   render_views
-  before :each do
+  before :all do
     @user = User.create(name: "Kenneth", email: "kennethiscool@berkeley.edu", uid: 994946, admin: true)
     @not_user = User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: false)
     CASClient::Frameworks::Rails::Filter.fake('994946')
     @project1 = Project.create(name: 'CS 169', desc: 'Rails app development')
+    @submission1_1 = Submission.create(
+      title: 'submission test',
+      desc: 'test submission desc',
+      attachment: File.new(Rails.root + 'spec/fixtures/files/tester.txt'),
+      project_id: @project1.id,
+      like: false)
     @project2 = Project.create(name: 'CS 186', desc: 'Apache Spark business')
   end
   describe 'GET #index' do
@@ -50,13 +56,6 @@ describe ProjectsController do
 #    end
 #  end
   describe 'GET #show' do
-    before :each do
-      @submission1_1 = Submission.create(
-        title: 'submission test',
-        desc: 'test submission desc',
-        attachment: File.new(Rails.root + 'spec/fixtures/files/tester.txt'),
-        project_id: @project1.id)
-    end
     context 'authenticated and a user' do
       it 'shows the list of associated submissions' do
         get :show, :id => @project1.id
@@ -69,6 +68,12 @@ describe ProjectsController do
         get :show, :id => @project1.id
         expect(response).to redirect_to new_project_submission_url(@project1)
       end
+    end
+  end
+  describe 'POST #show' do
+    it 'likes a project' do
+      post :show, :id => @project1, :likes => ['1_1']
+      expect(response).to render_template('show')
     end
   end
 #  describe 'PUT #update' do
