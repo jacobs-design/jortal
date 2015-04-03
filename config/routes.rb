@@ -1,5 +1,5 @@
 Jortal::Application.routes.draw do
-  resources :users
+  resources :users, :except => [:show, :new]
   resources :projects , :except => [:edit, :update] do
     resources :submissions, :except => [:index, :destroy]
     collection do
