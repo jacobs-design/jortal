@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     if @user.destroy
       flash[:notice] = 'User was successfully deleted. Good riddance.'
     else
-      flash[:notice] = 'User was not successfulyl deleted.'
+      flash[:notice] = 'User was not successfully deleted.'
     end
     respond_with @user
   end

@@ -26,6 +26,13 @@ describe UsersController do
             get :index
             expect(response.body).to include("ng2@email.com")
         end
+        it 'should fail if given a bad uid' do
+            CASClient::Frameworks::Rails::Filter.fake("1337")
+            post :update, :id => @user.id, :user => {:name => "bk randy", :email => "ng2@email.com", :uid => 1337, :admin => false}
+
+            get :index
+            expect(response.body).to include("not successfully updated")
+        end
     end
 
     describe 'add a user' do
@@ -52,6 +59,13 @@ describe UsersController do
             get :index
             expect(response.body).to include("UID cannot be blank")
         end
+
+        it 'should fail given a empty name' do
+            CASClient::Frameworks::Rails::Filter.fake("1337")
+            post :create, :user => {:uid => 12, :email => "email@email.com", :admin => false}
+            get :index
+            expect(response.body).to include("Name can't be blank")
+        end
     end
 
     describe 'delete a user' do
@@ -61,6 +75,14 @@ describe UsersController do
 
             get :index
             expect(response.body).not_to include("bk randy")
+        end
+        it 'should show an error if the user can\'t be deleted' do
+            CASClient::Frameworks::Rails::Filter.fake("1337")
+            User.any_instance.should_receive(:destroy).and_return(false)
+            post :destroy, :id => @user.id
+
+            get :index
+            expect(response.body).to include("not successfully deleted")
         end
     end
 end
