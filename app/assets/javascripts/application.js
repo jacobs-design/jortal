@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+showForm = function(id) {
+  $('body').append(
+    $('div#generate_form').load(id+'/submissions/new')
+  );
+};
