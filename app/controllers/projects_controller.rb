@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-    
+
     respond_with @projects
   end
 

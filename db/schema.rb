@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(:version => 20150403044859) do
     t.string   "title"
     t.text     "desc"
     t.integer  "project_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.boolean  "like"
+    t.boolean  "like",                    :default => false
   end
 
   add_index "submissions", ["project_id"], :name => "index_submissions_on_project_id"
