@@ -32,8 +32,9 @@ class SubmissionsController < ApplicationController
         return
       else
         flash[:error] = "Missing requirement(s)"
-        format.html { render action: "new" }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
+        redirect_to submit_submission_projects_path
+        # format.html { render action: "new" }
+        # format.json { render json: @submission.errors, status: :unprocessable_entity }
       end
     end
   end

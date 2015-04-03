@@ -1,6 +1,9 @@
 Jortal::Application.routes.draw do
   resources :users
   resources :projects , :except => [:edit, :update] do
+    collection do
+      get 'submit_submission', :to => 'projects#submit_submission', as: 'submit_submission'
+    end
     resources :submissions, :except => :index
   end
   get 'projects/:id/submissions', :to => 'projects#show'

@@ -1,11 +1,15 @@
 class ProjectsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
-  before_filter :check_admin!, except: [:index, :show]
+  before_filter :check_admin!, except: [:index, :show, :submit_submission]
   respond_to :html, :json
 
   # GET /projects
   # GET /projects.json
   def index
+    if not is_user?
+      redirect_to submit_submission_projects_url
+      return
+    end
     @projects = Project.all
 
     respond_with @projects
@@ -82,4 +86,10 @@ class ProjectsController < ApplicationController
 #      format.json { head :no_content }
 #    end
   end
+  def submit_submission
+    @projects = Project.all
+    respond_with @projects
+  end
 end
+
+
