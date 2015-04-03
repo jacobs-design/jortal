@@ -16,15 +16,6 @@ describe UsersController do
         end
     end
 
-    describe 'show a user' do
-        it 'should show the user' do
-            CASClient::Frameworks::Rails::Filter.fake("13")
-            get :show, :id => @user.id
-            response.should render_template :show
-            expect(response.body).to include("bk randy")
-        end
-    end
-
     describe 'edit a user' do
         it 'should change the user' do
             CASClient::Frameworks::Rails::Filter.fake("1337")
@@ -40,8 +31,8 @@ describe UsersController do
     describe 'add a user' do
         it 'should add the user' do
             CASClient::Frameworks::Rails::Filter.fake("1337")
-            get :new
-            response.should render_template :new
+            get :index
+            response.should render_template :index
             post :create, :user => {:name => "name person32", :email => "email@email.com", :uid => 12, :admin => false}
 
             get :index
