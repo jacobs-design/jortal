@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ProjectsController do
   render_views
-  before :all do
+  before :each do
     @user = User.create(name: "Kenneth", email: "kennethiscool@berkeley.edu", uid: 994946, admin: true)
     @not_user = User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: false)
     CASClient::Frameworks::Rails::Filter.fake('994946')
