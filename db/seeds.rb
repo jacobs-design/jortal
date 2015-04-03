@@ -12,6 +12,12 @@ projects = [{:name => 'CS 169 Rails App', :desc => 'Make a rails app for a nonpr
             {:name => 'CS 161 Password Cracker', :desc => 'Something about rainbow tables to do the thing.'}
 ]
 
+user_list = [["Terry Tsai", 988433, "iliveinabucket@berkeley.edu", true]]
+
+user_list.each do |name, uid, email, admin|
+  User.create( name: name, uid: uid, email: email, admin: admin )
+end
+
 projects.each do |t|
   p = Project.create(t)
   # TODO: add seed attachment in db/fixtures

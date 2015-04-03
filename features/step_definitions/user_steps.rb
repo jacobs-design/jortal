@@ -36,7 +36,6 @@ When /^I go to the users page as "(.*?)"$/ do |name|
 end
 
 When /^I add a new user with name "(.*?)" and email "(.*?)" and uid "(.*?)" and admin "(.*?)"$/ do |name, email, uid, admin|
-  click_link("New User")
   fill_in("Name", :with => name)
   fill_in("user_email", :with => email)
   fill_in("user_uid", :with => uid)
@@ -56,6 +55,39 @@ When /^(?:|I )uncheck "([^"]*)"$/ do |field|
   uncheck(field)
 end
 
+When(/^(?:|I )change the name of "(.*?)" to "(.*?)"$/) do |name, input|
+  User.where(name: name).first.update_attributes(:name => input)
+  visit "/users"
+end
+
+When(/^(?:|I )change the uid of "(.*?)" to "(.*?)"$/) do |name, input|
+  User.where(name: name).first.update_attributes(:uid => input)
+  visit "/users"
+end
+When(/^(?:|I )change the email of "(.*?)" to "(.*?)"$/) do |name, input|
+  User.where(name: name).first.update_attributes(email: input)
+  visit "/users"
+end
+
+When(/^(?:|I )change the admin of "(.*?)" to "(.*?)"$/) do |name, input|
+  User.where(name: name).first.update_attributes(admin: input)
+  visit "/users"
+end
+
+Then(/^the uid of "(.*?)" should be "(.*?)"/) do |name, input|
+  user_field = User.where(name: name).first.uid
+  assert user_field.to_s == input
+end
+
+Then(/^the email of "(.*?)" should be "(.*?)"/) do |name, input|
+  user_field = User.where(name: name).first.email
+  assert user_field.to_s == input
+end
+
+Then(/^the admin of "(.*?)" should be "(.*?)"/) do |name, input|
+  user_field = User.where(name: name).first.admin
+  assert user_field.to_s == input
+end
 Then(/^there should be a user named "(.*?)"$/) do |name|
   if page.respond_to? :should
     page.should have_content(name)
