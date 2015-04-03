@@ -38,6 +38,20 @@ describe UsersController do
             get :index
             expect(response.body).to include("name person32")
         end
+
+        it 'should fail if the uid already exists' do
+            CASClient::Frameworks::Rails::Filter.fake("1337")
+            post :create, :user => {:name => "name person32", :email => "email@email.com", :uid => 13, :admin => false}
+            get :index
+            expect(response.body).to include("UID has already been taken")
+        end
+
+        it 'should fail given a blank uid' do
+            CASClient::Frameworks::Rails::Filter.fake("1337")
+            post :create, :user => {:name => "name person32", :email => "email@email.com", :admin => false}
+            get :index
+            expect(response.body).to include("UID cannot be blank")
+        end
     end
 
     describe 'delete a user' do
