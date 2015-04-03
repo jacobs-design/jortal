@@ -10,12 +10,14 @@ Background: course exists and is ready for submissions
     And the following project exists
     | name   | desc                 |
     | CS 169 | Software Engineering |
+    | "CS 186 Spark Intro"    | "Learning how to use Spark" |
 
-    And I am on the CS 169 project submission page
+    And I am on the project submission page
 
 Scenario: submit a project with all required fields present
 
-    When I fill in "submission_title" with "My Cool Project"
+    When I select "CS 169" from the dropdown menu
+    And I fill in "submission_title" with "My Cool Project"
     And I fill in "submission_desc" with "I worked really hard on this project. Please look at it"
     And I upload in "submission_attachment" with "test_files/test.mp4"
     And I follow "Submit"
@@ -23,10 +25,11 @@ Scenario: submit a project with all required fields present
 
 Scenario: submit a project with missing required fields
 
+    When I select "CS 186" from the dropdown menu
     When I fill in "submission_title" with ""
     And I fill in "submission_desc" with "I worked really hard on this project. Please look at it"
     And I upload in "submission_attachment" with "test_files/test.mp4"
     And I follow "Submit"
 
-    Then I should still be on the CS 169 project submission page
+    Then I should still be on the CS 186 project submission page
     And I should see "Missing requirement(s)"
