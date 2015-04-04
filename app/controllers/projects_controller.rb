@@ -112,4 +112,3 @@ class ProjectsController < ApplicationController
 
 end
 
-

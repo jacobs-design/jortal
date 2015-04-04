@@ -28,6 +28,13 @@ describe ProjectsController do
       visit '/projects'
       expect(response).to render_template('index')
     end
+    context 'not a user' do
+      it 'redirects to the project submission form' do
+      CASClient::Frameworks::Rails::Filter.fake('1337')
+        get :index
+        expect(response).to redirect_to submit_submission_projects_path
+      end
+    end
   end
   describe 'POST #create' do
     context 'all required fields provided' do
