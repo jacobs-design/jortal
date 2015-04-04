@@ -18,6 +18,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    if not params[:file].nil?
+      @file = params[:file]
+    end
     @project = Project.find(params[:id])
     if not is_user?
       redirect_to new_project_submission_url(@project) and return
@@ -102,13 +105,9 @@ class ProjectsController < ApplicationController
   end
 
   def download
-    s = Submission.new
-    s.attachment = [] # Assign an array of files like this
-    s.attachment = [File.open('https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt')] # or like this
-    s.attachment[0].url # => '/url/to/file.png'
-    s.attachment[0].current_path # => 'path/to/file.png'
-    s.attachment[0].identifier # => 'file.png'
-    redirect_to project_path(params[:id]) # figure out path?!
+    @file = AttachmentUploader.new
+    @file.retrieve_from_store!('test.txt')
+    redirect_to project_path(id: params[:id], file: @file) # figure out path?!
   end
 
 end

@@ -11,7 +11,7 @@ Background: the instructor is on the project submissions page listing some submi
     | id | name   | desc                  |
     | 69 | CS 169 | Non-profit rails apps |
     And the following submissions exist:
-    | title   | desc                     | project_id | attachment_file_name | like  |
+    | title   | desc                     | project_id | attachment           | like  |
     | Jortal  | Jacobs Project Portal    | 69         | test_files/test.txt  | false |
     | Sportal | Spacobs Project Portal   | 69         | test_files/test.txt  | true  |
     | Swortal | Swaggiest Project Portal | 69         | test_files/test.txt  | true  |
@@ -21,6 +21,5 @@ Background: the instructor is on the project submissions page listing some submi
 Scenario: download a submission
 
     When I download the Jortal submission
-    Then I should have successfully downloaded Jortal 
-    And I should be on the submissions page for "CS 169"
+    Then I should be on the submissions page for "CS 169"
     And I should see a successful download message for Jortal

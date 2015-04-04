@@ -60,7 +60,7 @@ end
 Given /^the following submissions exist:$/ do |table|
   table.hashes.each do |submission|
     Submission.create(title: submission[:title], desc: submission[:desc], project_id: submission[:project_id],
-      attachment_file_name: submission[:attachment_file_name], like: submission[:like])
+      attachment: submission[:attachment], like: submission[:like])
   end
 end
 
@@ -110,4 +110,16 @@ end
 
 Given /^(?:|I )am on the submissions page for (.+?)$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
+end
+
+When /^(?:|I )download the (.*) submission$/ do |download|
+  click_button("Download")
+end
+
+Then /^(?:|I )should see a successful download message for (.*)$/ do |submission|
+  if page.respond_to? :should
+    page.should have_content("Successfully downloaded https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  else
+    assert page.has_content?("Successfully downloaded https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  end
 end
