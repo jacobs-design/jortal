@@ -79,10 +79,10 @@ end
 Then /^(?:|I )should be on the submissions page for "(.*)"$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
-      current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
+    current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
 #    current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
   else
-      assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s), current_path
+    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s), current_path
 #    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
   end
 end
@@ -90,10 +90,20 @@ end
 Then /the following submissions should be (un)?liked: (.*)/ do |unliked, submission_list|
   submission_list.delete(" ").split(",").each do |submission|
     @submission = Submission.find_by name: submission
-    if unliked
-      @submission.like.should == false
+    if @submission.like.respond_to? :should
+      if unliked
+        @submission.like.should == false
+      else
+        @submission.like.should == true
+      end
     else
-      @submission.like.should == true
+      if unliked
+        assert_equal @submission.like, false
+#        @submission.like.should == false
+      else
+        assert_equal @submission.like, true
+#        @submission.like.should == true
+      end
     end
   end
 end
