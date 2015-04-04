@@ -8,9 +8,9 @@ Background: the instructor is on the projects list page and "CS 169 Software Eng
 
     Given I am an admin
     And the following projects exist:
-    | name                    | desc                        |
-    | "CS 186 Spark Intro"    | "Learning how to use Spark" |
-    | "CS 188 Solving Pacman" | "Using AI to solve Pacman"  |
+    | id | name                    | desc                        |
+    | 6  | "CS 186 Spark Intro"    | "Learning how to use Spark" |
+    | 7  | "CS 188 Solving Pacman" | "Using AI to solve Pacman"  |
 
 Scenario: successfully add a new project to the list of projects
 

@@ -41,3 +41,6 @@ bower.json
 # Ignore vim temporary files
 *.swp
 *.swo
+
+# Ignore RubyMine files
+.idea/
