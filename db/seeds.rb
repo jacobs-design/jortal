@@ -12,13 +12,29 @@ projects = [{:name => 'CS 169 Rails App', :desc => 'Make a rails app for a nonpr
             {:name => 'CS 161 Password Cracker', :desc => 'Something about rainbow tables to do the thing.'}
 ]
 
+user_list = [["Terry Tsai", 988433, "iliveinabucket@berkeley.edu", true],
+             ["Arlan Jaska", 1033859, "ajaska@berkeley.edu", true],
+]
+
+user_list.each do |name, uid, email, admin|
+  User.create( name: name, uid: uid, email: email, admin: admin )
+end
+
 projects.each do |t|
   p = Project.create(t)
   # TODO: add seed attachment in db/fixtures
   Submission.create(:title => "TITLE FOR #{p.id}",
                     :desc => "DESC FOR #{p.id}",
                     :project_id => p.id,
-                    :attachment => File.new("#{Rails.root}/test_files/test.mp4")
-                    )
+                    :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
+                    :like => false)
+
+  Submission.create(:title => "second title for #{p.id}",
+                    :desc => "second desc for #{p.id}",
+                    :project_id => p.id,
+                    :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
+                    :like => true)
 end
 
+User.create(uid: 994946)
+User.create(uid: 991334)
