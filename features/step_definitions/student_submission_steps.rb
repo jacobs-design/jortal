@@ -115,3 +115,16 @@ end
 Given /^(?:|I )am on the submissions page for (.+?)$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
 end
+
+When /^(?:|I )download the (.*) submission$/ do |download|
+  submission = Submission.where(title: download).first
+  page.find("#download_#{submission.project_id}_#{submission.id}").click
+end
+
+Then /^(?:|I )should see a successful download message for (.*)$/ do |submission|
+  if page.respond_to? :should
+    page.should have_content("Successfully downloaded: https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  else
+    assert page.has_content?("Successfully downloaded: https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  end
+end

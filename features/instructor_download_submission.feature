@@ -21,6 +21,5 @@ Background: the instructor is on the project submissions page listing some submi
 Scenario: download a submission
 
     When I download the Jortal submission
-    Then I should have successfully downloaded Jortal 
-    And I should be on the submissions page for "CS 169"
+    Then I should be on the submissions page for "CS 169"
     And I should see a successful download message for Jortal
