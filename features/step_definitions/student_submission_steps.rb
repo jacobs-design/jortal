@@ -13,14 +13,20 @@ Given /the following project exists/ do |project_table|
   end
 end
 
-Given /^(?:|I )am on the (.+?) project submission page$/ do |page_name|
+Given /^(?:|I )am on the project submission page$/ do
+  visit '/projects/submit_submission'
+end
+
+Then /^(?:|I )should be on the (.+?) project submission page$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions/new'
 end
 
-Then /^(?:|I )should still be on the (.+?) project submission page$/ do |page_name|
-  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions/new'
+When /^(?:|I )select "([^"]*)" from the dropdown menu$/ do |project|
+  id = Project.where(name: project).pluck(:id)[0].to_s
+  desc = Project.where(name: project).pluck(:desc)[0].to_s
+  find("option[value='"+id+"']").click
+  page.find('#project').trigger(:onChange)
 end
-
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
