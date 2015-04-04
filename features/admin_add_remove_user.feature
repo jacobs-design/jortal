@@ -16,7 +16,7 @@ Background: users in database
 # Fail
 Scenario: add new unprivileged user with no account
   Given I am on the users page with no account
-  Then I should be on the projects list page
+  Then I should be on the project submission page
 
 Scenario: add existing UID using a privileged account
   Given I am on the users page as "Arlan Jaska"

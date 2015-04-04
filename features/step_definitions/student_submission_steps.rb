@@ -17,8 +17,8 @@ Given /^(?:|I )am on the project submission page$/ do
   visit '/projects/submit_submission'
 end
 
-Then /^(?:|I )should be on the (.+?) project submission page$/ do |page_name|
-  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions/new'
+Then /^(?:|I )should be on the project submission page$/ do
+  visit '/projects/submit_submission'
 end
 
 When /^(?:|I )select "([^"]*)" from the dropdown menu$/ do |project|
