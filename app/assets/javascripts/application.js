@@ -15,7 +15,11 @@
 //= require_tree .
 
 showForm = function(id) {
-  $('body').append(
-    $('div#generate_form').load(id+'/submissions/new')
-  );
+  if (id == "") {
+    $('div#generate_form').text("");
+  } else {
+    $('body').append(
+      $('div#generate_form').load(id+'/submissions/new')
+    );
+  }
 };

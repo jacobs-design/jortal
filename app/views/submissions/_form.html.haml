@@ -1,3 +1,6 @@
+%div
+  = Project.find(params[:project_id])[:desc]
+%br/
 = form_for([Project.find(params[:project_id]), @submission], :url => project_submissions_path) do |f|
   - if @submission.errors.any?
     #error_explanation
