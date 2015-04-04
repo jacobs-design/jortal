@@ -5,13 +5,18 @@ gem 'rails', '3.2.16'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'haml'
-gem 'paperclip', '~> 4.2'
 gem 'bootstrap-sass', '~> 3.2'
 gem 'sass-rails', '>= 3.2'
 gem 'sprockets'
 gem 'autoprefixer-rails'
 gem 'pg'
 gem 'activerecord-postgresql-adapter'
+
+# AWS stuffs
+gem 'annotate'
+gem 'carrierwave-aws'
+gem 'fog-aws'
+gem 'fog'
 
 # Interface with AuthCAS
 gem 'rubycas-client'
