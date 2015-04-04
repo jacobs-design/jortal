@@ -66,11 +66,11 @@ end
 
 When /I (un)?like the following submissions: (.*)/ do |unlike, submission_list|
   submission_list.delete(" ").split(",").each do |submission|
-    @submission = Submission.find_by name: submission
+    @submission = Submission.where(:title => submission).first
     if unlike
-      uncheck("likes[#{@submission.project_id}_#{@submission.id}]")
+      uncheck("likes_#{@submission.project_id}_#{@submission.id}")
     else
-      check("likes[#{@submission.project_id}_#{@submission.id}]")
+      check("likes_#{@submission.project_id}_#{@submission.id}")
     end
   end
   click_button("Submit Likes")
@@ -89,7 +89,7 @@ end
 
 Then /the following submissions should be (un)?liked: (.*)/ do |unliked, submission_list|
   submission_list.delete(" ").split(",").each do |submission|
-    @submission = Submission.find_by name: submission
+    @submission = Submission.where(:title => submission).first
     if @submission.like.respond_to? :should
       if unliked
         @submission.like.should == false

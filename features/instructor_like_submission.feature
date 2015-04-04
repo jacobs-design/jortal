@@ -8,15 +8,15 @@ Background: the instructor is on the project submissions page listing some submi
 
     Given I am an admin
     And the following projects exist:
-    | id | name     | desc                    |
-    | 69 | "CS 169" | "Non-profit rails apps" |
-    And I am on the show page for project CS 169
+    | id | name   | desc                  |
+    | 69 | CS 169 | Non-profit rails apps |
     And the following submissions exist:
-    | title     | desc                       | project_id | attachment_file_name | like  |
-    | "Jortal"  | "Jacobs Project Portal"    | 69         | test_files/test.txt  | false |
-    | "Sportal" | "Spacobs Project Portal"   | 69         | test_files/test.txt  | true  |
-    | "Swortal" | "Swaggiest Project Portal" | 69         | test_files/test.txt  | true  |
-    | "Swole"   | "Swole Portal"             | 69         | test_files/test.txt  | false |
+    | title   | desc                     | project_id | attachment_file_name | like  |
+    | Jortal  | Jacobs Project Portal    | 69         | test_files/test.txt  | false |
+    | Sportal | Spacobs Project Portal   | 69         | test_files/test.txt  | true  |
+    | Swortal | Swaggiest Project Portal | 69         | test_files/test.txt  | true  |
+    | Swole   | Swole Portal             | 69         | test_files/test.txt  | false |
+    And I am on the show page for project CS 169
 
 Scenario: like a submission
 

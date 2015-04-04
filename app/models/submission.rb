@@ -6,5 +6,4 @@ class Submission < ActiveRecord::Base
   do_not_validate_attachment_file_type :attachment
   validates :title, presence: true
   validates :desc, presence: true
-  validates :attachment, presence: true
 end

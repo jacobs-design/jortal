@@ -10,7 +10,7 @@ Background: course exists and is ready for submissions
     And the following project exists
     | name   | desc                 |
     | CS 169 | Software Engineering |
-    | "CS 186 Spark Intro"    | "Learning how to use Spark" |
+    | CS 186 Spark Intro    | Learning how to use Spark |
 
     And I am on the project submission page
 
