@@ -95,10 +95,22 @@ class ProjectsController < ApplicationController
 #      format.json { head :no_content }
 #    end
   end
+  
   def submit_submission
     @projects = Project.all
     respond_with @projects
   end
+
+  def download
+    s = Submission.new
+    s.attachment = [] # Assign an array of files like this
+    s.attachment = [File.open('https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt')] # or like this
+    s.attachment[0].url # => '/url/to/file.png'
+    s.attachment[0].current_path # => 'path/to/file.png'
+    s.attachment[0].identifier # => 'file.png'
+    redirect_to project_path(params[:id]) # figure out path?!
+  end
+
 end
 
 
