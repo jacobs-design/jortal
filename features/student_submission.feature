@@ -14,11 +14,13 @@ Background: course exists and is ready for submissions
 
     And I am on the project submission page
 
+@javascript @selenium
 Scenario: select a project should show correct form
 
-    When I select "CS 186" from the dropdown menu
+    When I select "CS 169" from the dropdown menu
     Then I should see "Software Engineering"
 
+@javascript
 Scenario: submit a project with all required fields present
 
     When I select "CS 169" from the dropdown menu
@@ -28,6 +30,7 @@ Scenario: submit a project with all required fields present
     And I follow "Submit"
     Then I should be on the CS 169 successful submission page
 
+@javascript
 Scenario: submit a project with missing required fields
 
     When I select "CS 186" from the dropdown menu

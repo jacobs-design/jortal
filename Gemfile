@@ -58,4 +58,5 @@ group :test, :development do
     gem 'sqlite3'
     gem 'rspec-rails', '~> 2.14.0'
     gem 'simplecov'
+    gem 'selenium-webdriver'
 end
