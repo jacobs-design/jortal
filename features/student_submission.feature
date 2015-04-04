@@ -8,12 +8,19 @@ Background: course exists and is ready for submissions
     Given I am a Student
 
     And the following project exists
-    | name   | desc                 |
-    | CS 169 | Software Engineering |
-    | CS 186 Spark Intro    | Learning how to use Spark |
+    | name   | desc                      |
+    | CS 169 | Software Engineering      |
+    | CS 186 | Learning how to use Spark |
 
     And I am on the project submission page
 
+@javascript @selenium
+Scenario: select a project should show correct form
+
+    When I select "CS 169" from the dropdown menu
+    Then I should see "Software Engineering"
+
+@javascript
 Scenario: submit a project with all required fields present
 
     When I select "CS 169" from the dropdown menu
@@ -23,6 +30,7 @@ Scenario: submit a project with all required fields present
     And I follow "Submit"
     Then I should be on the CS 169 successful submission page
 
+@javascript
 Scenario: submit a project with missing required fields
 
     When I select "CS 186" from the dropdown menu
@@ -31,5 +39,5 @@ Scenario: submit a project with missing required fields
     And I upload in "submission_attachment" with "test_files/test.mp4"
     And I follow "Submit"
 
-    Then I should still be on the CS 186 project submission page
+    Then I should be on the CS 186 project submission page
     And I should see "Missing requirement(s)"

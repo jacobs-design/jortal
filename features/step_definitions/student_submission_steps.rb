@@ -21,6 +21,12 @@ Then /^(?:|I )should be on the project submission page$/ do
   current_path.should == '/projects/submit_submission'
 end
 
+When /^(?:|I )select "([^"]*)" from the dropdown menu$/ do |project|
+  id = Project.where(name: project).pluck(:id)[0].to_s
+  desc = Project.where(name: project).pluck(:desc)[0].to_s
+  find("option[value='"+id+"']").click
+  page.execute_script("$('#project').trigger('onChange');")
+end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
