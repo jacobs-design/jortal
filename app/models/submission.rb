@@ -3,7 +3,7 @@ class Submission < ActiveRecord::Base
 
   mount_uploader :attachment, AttachmentUploader
 
-  attr_accessible :title, :desc, :attachment, :project_id
+  attr_accessible :title, :desc, :attachment, :project_id, :like
   validates :title, presence: true
   validates :desc, presence: true
   validates :attachment, presence: true
