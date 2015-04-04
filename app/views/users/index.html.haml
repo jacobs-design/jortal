@@ -1,21 +1,37 @@
 %h1 Listing users
-%table
-  %tr
-    %th Name
-    %th Uid
-    %th Email
-    %th Admin
-    %th
-    %th
-    %th
-  - @users.each do |user|
+= form_for :user, method: :put, :html => { :id => "users_table_form" } do |f|
+  %table{:id => 'users'}
     %tr
-      %td= user.name
-      %td= user.uid
-      %td= user.email
-      %td= user.admin
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+      %th Name
+      %th Uid
+      %th Email
+      %th Admin
+      %th
+      %th
+      %th
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.uid
+        %td= user.email
+        %td= user.admin
+        %td= link_to 'Edit', edit_user_path(user), :class => 'users_edit_button'
+        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+        %td{:style => 'display: none;'}= user.id 
+
 %br/
-= link_to 'New User', new_user_path
+//= link_to 'New User', new_user_path
+= form_for(User.new) do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :uid
+  = f.number_field :uid
+
+  = f.label :email
+  = f.text_field :email
+
+  = f.label :admin
+  = f.check_box :admin
+
+  = f.submit
