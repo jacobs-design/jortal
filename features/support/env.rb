@@ -62,6 +62,7 @@ require 'selenium-webdriver'
 require 'capybara/cucumber'
 require 'rspec/expectations'
 
-Capybara.default_driver = :selenium
-Capybara.javascript_driver = :selenium
+#Capybara.default_driver = :selenium
+#Capybara.javascript_driver = :selenium
+Capybara.use_default_driver
 Cucumber::Rails::Database.javascript_strategy = :truncation

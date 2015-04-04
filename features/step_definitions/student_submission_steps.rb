@@ -18,7 +18,10 @@ Given /^(?:|I )am on the project submission page$/ do
 end
 
 Then /^(?:|I )should be on the project submission page$/ do
-  visit '/projects/submit_submission'
+  current_path.should == '/projects/submit_submission'
+end
+Then /^(?:|I )should be on the (.+?) project submission page$/ do |project_name|
+  current_path.should == '/projects/'+Project.where(name: project_name).pluck(:id)[0].to_s+'/submissions'
 end
 
 When /^(?:|I )select "([^"]*)" from the dropdown menu$/ do |project|
@@ -65,8 +68,12 @@ end
 #FROM THIS POINT ONWARD: JACK AND KENNETH CLAIM THIS DOMAIN
 Given /^the following submissions exist:$/ do |table|
   table.hashes.each do |submission|
-    Submission.create(title: submission[:title], desc: submission[:desc], project_id: submission[:project_id],
-      attachment_file_name: submission[:attachment_file_name], like: submission[:like])
+    Submission.create(
+        title: submission[:title],
+        desc: submission[:desc],
+        project_id: submission[:project_id],
+        attachment: File.new("#{Rails.root}/test_files/test.mp4"),
+        like: submission[:like])
   end
 end
 
@@ -116,4 +123,16 @@ end
 
 Given /^(?:|I )am on the submissions page for (.+?)$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
+end
+
+When /^(?:|I )download the (.*) submission$/ do |download|
+  click_button("Download")
+end
+
+Then /^(?:|I )should see a successful download message for (.*)$/ do |submission|
+  if page.respond_to? :should
+    page.should have_content("Successfully downloaded https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  else
+    assert page.has_content?("Successfully downloaded https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  end
 end
