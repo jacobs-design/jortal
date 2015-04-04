@@ -10,7 +10,7 @@ Background: the instructor is on the project submissions page listing some submi
     And the following projects exist:
     | id | name     | desc                    |
     | 69 | "CS 169" | "Non-profit rails apps" |
-    And I am on the CS 169 project submission page
+    And I am on the show page for project CS 169
     And the following submissions exist:
     | title     | desc                       | project_id | attachment_file_name | like  |
     | "Jortal"  | "Jacobs Project Portal"    | 69         | test_files/test.txt  | false |
