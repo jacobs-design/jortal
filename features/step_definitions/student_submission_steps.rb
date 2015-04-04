@@ -108,6 +108,6 @@ Then /the following submissions should be (un)?liked: (.*)/ do |unliked, submiss
   end
 end
 
-Given /^(?:|I )am on the show page for project (.+?)$/ do |page_name|
+Given /^(?:|I )am on the submissions page for (.+?)$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
 end

@@ -16,7 +16,7 @@ Background: the instructor is on the project submissions page listing some submi
     | Sportal | Spacobs Project Portal   | 69         | test_files/test.txt  | true  |
     | Swortal | Swaggiest Project Portal | 69         | test_files/test.txt  | true  |
     | Swole   | Swole Portal             | 69         | test_files/test.txt  | false |
-    And I am on the show page for project CS 169
+    And I am on the submissions page for CS 169
 
 Scenario: download a submission
 
