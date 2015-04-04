@@ -13,12 +13,12 @@ Given /the following project exists/ do |project_table|
   end
 end
 
-Given /^(?:|I )am on the (.+?) project submission page$/ do |page_name|
-  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions/new'
+Given /^(?:|I )am on the project submission page$/ do
+  visit '/projects/submit_submission'
 end
 
-Then /^(?:|I )should still be on the (.+?) project submission page$/ do |page_name|
-  visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions/new'
+Then /^(?:|I )should be on the project submission page$/ do
+  current_path.should == '/projects/submit_submission'
 end
 
 
@@ -59,8 +59,12 @@ end
 #FROM THIS POINT ONWARD: JACK AND KENNETH CLAIM THIS DOMAIN
 Given /^the following submissions exist:$/ do |table|
   table.hashes.each do |submission|
-    Submission.create(title: submission[:title], desc: submission[:desc], project_id: submission[:project_id],
-      attachment_file_name: submission[:attachment_file_name], like: submission[:like])
+    Submission.create(
+        title: submission[:title],
+        desc: submission[:desc],
+        project_id: submission[:project_id],
+        attachment: File.new("#{Rails.root}/test_files/test.mp4"),
+        like: submission[:like])
   end
 end
 
