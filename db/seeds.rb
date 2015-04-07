@@ -27,13 +27,13 @@ projects.each do |t|
   Submission.create(:title => "TITLE FOR #{p.id}",
                     :desc => "DESC FOR #{p.id}",
                     :project_id => p.id,
-                    :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
+                    :attachment => File.new("#{Rails.root}/test_files/test.txt"),
                     :like => false)
 
   Submission.create(:title => "second title for #{p.id}",
                     :desc => "second desc for #{p.id}",
                     :project_id => p.id,
-                    :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
+                    :attachment => File.new("#{Rails.root}/test_files/test.txt"),
                     :like => true)
 end
 

@@ -34,6 +34,8 @@ end
 
 When /^(?:|I )upload in "([^"]*)" with "([^"]*)"$/ do |field, path|
   # ??
+  puts field
+  puts File.expand_path(path)
   attach_file(field, File.expand_path(path))
 end
 
@@ -42,6 +44,7 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
 end
 
 Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
+  puts page.body
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
       current_path.should == '/submissions/thank_you'
@@ -49,6 +52,15 @@ Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
   else
       assert_equal ('/submissions/thank_you'), current_path
 #    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
+  end
+end
+
+Then /^(?:|I )should be on the (.+?) project submission page$/ do |page_name|
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+   current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
+  else
+   assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
   end
 end
 
