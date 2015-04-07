@@ -17,6 +17,7 @@ gem 'annotate'
 gem 'carrierwave-aws'
 gem 'fog-aws'
 gem 'fog'
+gem 'figaro'
 
 # Interface with AuthCAS
 gem 'rubycas-client'
