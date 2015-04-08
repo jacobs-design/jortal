@@ -24,6 +24,7 @@ Scenario: download a submission
     Then I should be on the submissions page for "CS 169"
     And I should see a successful download message for Jortal
 
+#iteration3-1: added multiple downloads
 Scenario download multiple submissions
 
     When I download the following submissions: Jortal, Sportal, Swortal, Swole
