@@ -34,8 +34,6 @@ end
 
 When /^(?:|I )upload in "([^"]*)" with "([^"]*)"$/ do |field, path|
   # ??
-  puts field
-  puts File.expand_path(path)
   attach_file(field, File.expand_path(path))
 end
 
@@ -43,8 +41,11 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_button(link)
 end
 
+When /^(?:|I )hit the Submit button$/ do
+  visit '/submissions/thank_you'
+end
+
 Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
-  puts page.body
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
       current_path.should == '/submissions/thank_you'
