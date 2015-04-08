@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 gem 'rails', '3.2.16'
-gem 'figaro'
 gem 'jquery-rails'
 gem 'haml'
 gem 'bootstrap-sass', '~> 3.2'
@@ -14,9 +13,9 @@ gem 'activerecord-postgresql-adapter'
 
 # AWS stuffs
 gem 'annotate'
-gem 'carrierwave-aws'
-gem 'fog-aws'
+gem 'carrierwave', '~> 0.10'
 gem 'fog'
+gem 'figaro'
 
 # Interface with AuthCAS
 gem 'rubycas-client'

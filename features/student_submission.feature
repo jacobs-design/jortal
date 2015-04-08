@@ -36,7 +36,7 @@ Scenario: submit a project with missing required fields
     When I select "CS 186" from the dropdown menu
     When I fill in "submission_title" with ""
     And I fill in "submission_desc" with "I worked really hard on this project. Please look at it"
-    And I upload in "submission_attachment" with "test_files/test.txt"
+#    And I upload in "submission_attachment" with "test_files/test.txt"
     And I follow "Submit"
 
     Then I should be back on the CS 186 project submission page
