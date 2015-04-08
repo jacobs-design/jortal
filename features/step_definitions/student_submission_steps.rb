@@ -52,6 +52,15 @@ Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
   end
 end
 
+Then /^(?:|I )should be back on the (.+?) project submission page$/ do |page_name|
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+     current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
+  else
+     assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
+  end
+end
+
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
   if page.respond_to? :should
     page.should have_content(text)
@@ -69,7 +78,7 @@ Given /^the following submissions exist:$/ do |table|
         title: submission[:title],
         desc: submission[:desc],
         project_id: submission[:project_id],
-        attachment: File.new("#{Rails.root}/test_files/test.mp4"),
+        attachment: File.new("#{Rails.root}/test_files/test.txt"),
         like: submission[:like])
   end
 end
