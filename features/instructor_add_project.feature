@@ -16,7 +16,7 @@ Scenario: successfully add a new project to the list of projects
 
     When I am on the projects list page
     And I create a project with the name "CS 169 Software Engineering" and description "Learning Rails for days"
-    Then I should be on the project show page for "CS 169 Software Engineering"
+    Then I should be on the project show page for "CS 169 Software Engineering" #change show to edit
     And a new project named "CS 169 Software Engineering" should exist
 
 Scenario: failure to fill out all the required project fields
