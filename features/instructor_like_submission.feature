@@ -18,6 +18,7 @@ Background: the instructor is on the project submissions page listing some submi
     | Swole   | Swole Portal             | 69         | test_files/test.txt  | false |
     And I am on the submissions page for CS 169
 
+#iteration3-1: make likes/unlikes save upon click
 Scenario: like a submission
 
     When I like the following submissions: Jortal
