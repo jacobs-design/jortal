@@ -24,7 +24,7 @@ end
 When /^(?:|I )select "([^"]*)" from the dropdown menu$/ do |project|
   id = Project.where(name: project).pluck(:id)[0].to_s
   desc = Project.where(name: project).pluck(:desc)[0].to_s
-  find("option[value='"+id+"']").click
+  page.find("option[value='"+id+"']").select_option
   page.execute_script("$('#project').trigger('onChange');")
 end
 

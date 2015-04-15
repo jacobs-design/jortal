@@ -14,7 +14,7 @@ Background: course exists and is ready for submissions
 
     And I am on the project submission page
 
-@javascript @selenium
+@javascript
 Scenario: select a project should show correct form
 
     When I select "CS 169" from the dropdown menu
