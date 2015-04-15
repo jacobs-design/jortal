@@ -28,7 +28,7 @@
         -# %td= check_box_tag(name: "likes[project_submission_key]", checked: liked_submissions[project_submission_key])
         -# %td= link_to 'Edit', edit_project_submission_path(submission.project, submission)
         -# %td= link_to 'Destroy', [submission.project, submission], method: :delete, data: { confirm: 'Are you sure?' }
-        %td= link_to 'Download', download_path(id: @project.id), :id => "download_#{project_submission_key}"
+        %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id)
   = submit_tag 'Submit Likes', :id => 'likes_submit'
 %br/
 

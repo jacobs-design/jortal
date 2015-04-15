@@ -38,6 +38,12 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def download
+    submission = Submission.find(params[:id])
+
+    redirect_to submission.attachment.url
+  end
+
   # DELETE /submissions/1
   # DELETE /submissions/1.json
 #  def destroy

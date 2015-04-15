@@ -104,11 +104,5 @@ class ProjectsController < ApplicationController
     respond_with @projects
   end
 
-  def download
-    file_accessor = AttachmentUploader.new
-    file_accessor.retrieve_from_store!('test.txt')
-    redirect_to file_accessor.url
-  end
-
 end
 
