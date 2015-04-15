@@ -14,6 +14,7 @@ projects = [{:name => 'CS 169 Rails App', :desc => 'Make a rails app for a nonpr
 
 user_list = [["Terry Tsai", 988433, "iliveinabucket@berkeley.edu", true],
              ["Arlan Jaska", 1033859, "ajaska@berkeley.edu", true],
+             ["Jack Chou", 991334, "jackchou@berkeley.edu", true]
 ]
 
 user_list.each do |name, uid, email, admin|
@@ -26,15 +27,13 @@ projects.each do |t|
   Submission.create(:title => "TITLE FOR #{p.id}",
                     :desc => "DESC FOR #{p.id}",
                     :project_id => p.id,
-                    :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
+                    :attachment => File.new("#{Rails.root}/test_files/test.txt"),
                     :like => false)
 
   Submission.create(:title => "second title for #{p.id}",
                     :desc => "second desc for #{p.id}",
                     :project_id => p.id,
-                    :attachment => File.new("#{Rails.root}/test_files/test.mp4"),
+                    :attachment => File.new("#{Rails.root}/test_files/test.txt"),
                     :like => true)
 end
 
-User.create(uid: 994946)
-User.create(uid: 991334)

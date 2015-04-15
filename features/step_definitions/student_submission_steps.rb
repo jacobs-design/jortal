@@ -18,14 +18,14 @@ Given /^(?:|I )am on the project submission page$/ do
 end
 
 Then /^(?:|I )should be on the project submission page$/ do
-  visit '/projects/submit_submission'
+  current_path.should == '/projects/submit_submission'
 end
 
 When /^(?:|I )select "([^"]*)" from the dropdown menu$/ do |project|
   id = Project.where(name: project).pluck(:id)[0].to_s
   desc = Project.where(name: project).pluck(:desc)[0].to_s
   find("option[value='"+id+"']").click
-  page.execute_script("$('#project').trigger('onChange')")
+  page.execute_script("$('#project').trigger('onChange');")
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
@@ -41,6 +41,10 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_button(link)
 end
 
+When /^(?:|I )hit the Submit button$/ do
+  visit '/submissions/thank_you'
+end
+
 Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -49,6 +53,15 @@ Then /^(?:|I )should be on the (.+?) successful submission page$/ do |page_name|
   else
       assert_equal ('/submissions/thank_you'), current_path
 #    assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
+  end
+end
+
+Then /^(?:|I )should be back on the (.+?) project submission page$/ do |page_name|
+  current_path = URI.parse(current_url).path
+  if current_path.respond_to? :should
+     current_path.should == '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'
+  else
+     assert_equal ('/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s + '/submissions'), current_path
   end
 end
 
@@ -65,8 +78,12 @@ end
 #FROM THIS POINT ONWARD: JACK AND KENNETH CLAIM THIS DOMAIN
 Given /^the following submissions exist:$/ do |table|
   table.hashes.each do |submission|
-    Submission.create(title: submission[:title], desc: submission[:desc], project_id: submission[:project_id],
-      attachment_file_name: submission[:attachment_file_name], like: submission[:like])
+    Submission.create(
+        title: submission[:title],
+        desc: submission[:desc],
+        project_id: submission[:project_id],
+        attachment: File.new("#{Rails.root}/test_files/test.txt"),
+        like: submission[:like])
   end
 end
 
@@ -116,4 +133,17 @@ end
 
 Given /^(?:|I )am on the submissions page for (.+?)$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
+end
+
+When /^(?:|I )download the (.*) submission$/ do |download|
+  submission = Submission.where(title: download).first
+  page.find("#download_#{submission.project_id}_#{submission.id}").click
+end
+
+Then /^(?:|I )should see a successful download message for (.*)$/ do |submission|
+  if page.respond_to? :should
+    page.should have_content("Successfully downloaded: https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  else
+    assert page.has_content?("Successfully downloaded: https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
+  end
 end

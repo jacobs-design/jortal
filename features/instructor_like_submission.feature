@@ -11,13 +11,14 @@ Background: the instructor is on the project submissions page listing some submi
     | id | name   | desc                  |
     | 69 | CS 169 | Non-profit rails apps |
     And the following submissions exist:
-    | title   | desc                     | project_id | attachment_file_name | like  |
+    | title   | desc                     | project_id | attachment           | like  |
     | Jortal  | Jacobs Project Portal    | 69         | test_files/test.txt  | false |
     | Sportal | Spacobs Project Portal   | 69         | test_files/test.txt  | true  |
     | Swortal | Swaggiest Project Portal | 69         | test_files/test.txt  | true  |
     | Swole   | Swole Portal             | 69         | test_files/test.txt  | false |
     And I am on the submissions page for CS 169
 
+#iteration3-1: make likes/unlikes save upon click
 Scenario: like a submission
 
     When I like the following submissions: Jortal

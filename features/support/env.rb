@@ -57,5 +57,12 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-Cucumber::Rails::Database.javascript_strategy = :truncation
 
+require 'selenium-webdriver'
+require 'capybara/cucumber'
+require 'rspec/expectations'
+
+#Capybara.default_driver = :selenium
+#Capybara.javascript_driver = :selenium
+Capybara.use_default_driver
+Cucumber::Rails::Database.javascript_strategy = :truncation
