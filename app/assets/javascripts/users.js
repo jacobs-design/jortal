@@ -34,7 +34,7 @@ $("#users").ready(function () {
       var source = table_row.children[i];
       // Handle checkboxes
       if (target.type === "hidden") {
-        if (source.textContent === "true") {
+        if (source.textContent === "true" || source.textContent === 'Admin') {
           form[0].children[i].children[1].checked = true;
         }
       } else {
