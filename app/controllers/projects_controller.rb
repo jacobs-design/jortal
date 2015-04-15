@@ -105,9 +105,9 @@ class ProjectsController < ApplicationController
   end
 
   def download
-    @file = AttachmentUploader.new
-    @file.retrieve_from_store!('test.txt')
-    redirect_to project_path(id: params[:id], file: @file) # figure out path?!
+    file_accessor = AttachmentUploader.new
+    file_accessor.retrieve_from_store!('test.txt')
+    redirect_to file_accessor.url
   end
 
 end
