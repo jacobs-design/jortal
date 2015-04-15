@@ -18,7 +18,7 @@
       %tr
         %td= link_to submission.project.name, [submission.project, submission]
         %td= submission.title
-        %td= 'time'
+        %td= submission.created_at
         %td= 'submitter'
         - project_submission_key = "#{@project.id}_#{submission.id}"
         - if submission.like
