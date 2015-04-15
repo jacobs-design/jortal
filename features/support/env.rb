@@ -58,9 +58,16 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 
-require 'selenium-webdriver'
 require 'capybara/cucumber'
 require 'rspec/expectations'
+require 'capybara/poltergeist'
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {debug: false})
+end
+
+Capybara.javascript_driver = :poltergeist
+
 
 #Capybara.default_driver = :selenium
 #Capybara.javascript_driver = :selenium
