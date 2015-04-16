@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
     end
 
     @projects = Project.all
+    @user = current_user
 
     respond_with @projects
   end
