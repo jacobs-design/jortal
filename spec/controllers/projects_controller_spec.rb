@@ -70,10 +70,10 @@ describe ProjectsController do
       end
     end
     context 'authentiated and NOT a user' do
-      it 'redirects to the new project submission page' do
+      it 'redirects to the front page' do
         CASClient::Frameworks::Rails::Filter.fake('1337')
         get :show, :id => @project1.id
-        expect(response).to redirect_to new_project_submission_url(@project1)
+        expect(response).to redirect_to projects_url
       end
     end
   end

@@ -20,6 +20,9 @@ gem 'figaro'
 # Interface with AuthCAS
 gem 'rubycas-client'
 
+# Authorization
+gem 'pundit'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
