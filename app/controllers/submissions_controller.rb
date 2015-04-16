@@ -1,14 +1,13 @@
 class SubmissionsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
-  before_filter :check_user!, except: [:new, :create, :thank_you]
+  after_filter :verify_authorized, :except => [:new, :create, :thank_you]
   respond_to :html, :json
 
-  # GET /submissions
-  # GET /submissions.json
   # GET /submissions/1
   # GET /submissions/1.json
   def show
     @submission = Submission.find(params[:id])
+    authorize @submission
 
     respond_with @submission
   end
@@ -40,6 +39,7 @@ class SubmissionsController < ApplicationController
 
   def download
     submission = Submission.find(params[:id])
+    authorize @submission
 
     redirect_to submission.attachment.url
   end
