@@ -39,7 +39,7 @@ class SubmissionsController < ApplicationController
 
   def download
     submission = Submission.find(params[:id])
-    authorize @submission
+    authorize submission
 
     redirect_to submission.attachment.url
   end
