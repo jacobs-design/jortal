@@ -6,12 +6,14 @@
       %th{:class => session[:title_sort] ? 'hilite' : nil}= link_to "Project Name", projects_path(:title_sort => true, :id => "project_name")
       %th= "Project Description"
       %th= "# of Submissions"
+      %th= "Assigned Instructors"
   %tbody
     - @projects.each do |project|
       %tr
         %td= link_to "#{project.name}", project_path(project)
         %td= project.desc
         %td= project.submissions.count
+        %td= project.users.map! { |k| "#{k.name}" }.join ", "
 
 = link_to 'Add Project', new_project_path, :id => "add_project"
 
