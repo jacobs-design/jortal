@@ -11,6 +11,7 @@ Jortal::Application.routes.draw do
   get '/', :to => 'projects#index'
   get 'submissions/thank_you', :to => 'submissions#thank_you', as: 'thank_you'
   get 'projects/:project_id/submissions/:id/download', :to => 'submissions#download', as: 'download'
+  get 'users/:id/projects', :to => 'users#projects', as: 'user_projects'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

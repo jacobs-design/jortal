@@ -14,5 +14,8 @@ class UserPolicy < ApplicationPolicy
     def destroy?
         is_admin?
     end
+    def projects?
+        @user == @record or is_admin?
+    end
 end
 

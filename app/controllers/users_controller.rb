@@ -65,4 +65,12 @@ class UsersController < ApplicationController
     end
     respond_with @user
   end
+
+  # GET /users/1/projects
+  def projects
+    @user = User.find(params[:id])
+    authorize @user
+
+    @projects = @user.projects
+  end
 end
