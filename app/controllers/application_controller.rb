@@ -1,22 +1,20 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   protect_from_forgery
+  after_filter :verify_authorized
 
-  def is_user?
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  def current_user
     User.where(uid: session[:cas_user]).first
   end
 
-  def is_admin?
-    user = User.where(uid: session[:cas_user]).first
-    user and user.admin
+  def is_user?
+    current_user
   end
 
-  def check_user!
-    back = request.env["HTTP_REFERER"] || projects_url
-    redirect_to back, notice: "You must be logged in to do that" unless is_user?
-  end
-
-  def check_admin!
-    back = request.env["HTTP_REFERER"] || projects_url
-    redirect_to back, notice: "You must be an admin to do that" unless is_admin?
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || projects_url)
   end
 end

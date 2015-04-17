@@ -5,7 +5,8 @@
       %th Name
       %th Uid
       %th Email
-      %th Admin
+      %th User Type
+      %th
       %th
       %th
       %th
@@ -14,9 +15,10 @@
         %td= user.name
         %td= user.uid
         %td= user.email
-        %td= user.admin
+        %td= user.admin ? 'Admin' : 'Instructor'
         %td= link_to 'Edit', edit_user_path(user), :class => 'users_edit_button'
         %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Owned Projects', user_projects_path(user)
         %td{:style => 'display: none;'}= user.id 
 
 %br/

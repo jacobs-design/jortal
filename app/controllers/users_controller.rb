@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
-  before_filter :check_user!
-  before_filter :check_admin!, except: [:index, :show]
+  after_filter :verify_authorized
   respond_to :html, :json
 
   # GET /users
   def index
+    authorize User
+
     @users = User.all
     @who = session[:cas_user]
 
@@ -15,11 +16,14 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    authorize @user
   end
 
   # POST /users
   def create
     @user = User.new(params[:user])
+    authorize @user
+
     if @user.save
       flash[:notice] = 'User was successfully created.'
     else
@@ -38,6 +42,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   def update
     @user = User.find(params[:id])
+    authorize @user
 
     if @user.update_attributes(params[:user])
       flash[:notice] = 'User was successfully updated.'
@@ -51,11 +56,21 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user = User.find(params[:id])
+    authorize @user
+
     if @user.destroy
       flash[:notice] = 'User was successfully deleted. Good riddance.'
     else
       flash[:notice] = 'User was not successfully deleted.'
     end
     respond_with @user
+  end
+
+  # GET /users/1/projects
+  def projects
+    @user = User.find(params[:id])
+    authorize @user
+
+    @projects = @user.projects
   end
 end

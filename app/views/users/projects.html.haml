@@ -1,4 +1,4 @@
-%h1 All Projects
+%h1= "Projects owned by #{@user.name}"
 
 %table#projects
   %thead
@@ -16,5 +16,4 @@
         %td= project.users.map! { |k| "#{k.name}" }.join ", "
 
 = link_to 'Add Project', new_project_path, :id => "add_project"
-= link_to 'View my projects only', user_projects_path(@user)
-
+= link_to 'View all Projects', projects_path

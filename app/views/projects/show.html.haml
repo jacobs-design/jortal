@@ -1,6 +1,3 @@
-- if @file
-  %h3 Successfully downloaded: #{@file} 
-
 -#= button_to 'Add Moderators'
 = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }
 
@@ -9,7 +6,6 @@
 = form_tag project_path(id: @project.id), :id => 'likes_form', :method => :post do
   %table
     %tr
-      %th Project
       %th Title
       %th Submit Time
       %th Submitter
@@ -19,9 +15,8 @@
       %th
     - @submissions.each do |submission|
       %tr
-        %td= link_to submission.project.name, [submission.project, submission]
         %td= submission.title
-        %td= 'time'
+        %td= submission.created_at
         %td= 'submitter'
         - project_submission_key = "#{@project.id}_#{submission.id}"
         - if submission.like
@@ -31,7 +26,7 @@
         -# %td= check_box_tag(name: "likes[project_submission_key]", checked: liked_submissions[project_submission_key])
         -# %td= link_to 'Edit', edit_project_submission_path(submission.project, submission)
         -# %td= link_to 'Destroy', [submission.project, submission], method: :delete, data: { confirm: 'Are you sure?' }
-        %td= link_to 'Download', download_path(id: @project.id), :id => "download_#{project_submission_key}"
+        %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id)
   = submit_tag 'Submit Likes', :id => 'likes_submit'
 %br/
 

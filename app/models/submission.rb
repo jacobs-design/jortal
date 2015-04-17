@@ -1,7 +1,7 @@
 class Submission < ActiveRecord::Base
   belongs_to :project
 
-  mount_uploader :file, AttachmentUploader, :mount_on => :attachment
+  mount_uploader :attachment, AttachmentUploader
 
   attr_accessible :title, :desc, :attachment, :project_id, :like
   validates :title, presence: true
