@@ -1,4 +1,7 @@
 class ProjectPolicy < ApplicationPolicy
+    def index?
+        is_user?
+    end
     def new?
         is_admin?
     end
