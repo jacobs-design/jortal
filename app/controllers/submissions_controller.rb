@@ -40,8 +40,8 @@ class SubmissionsController < ApplicationController
   def download
     submission = Submission.find(params[:id])
     authorize submission
-
-    redirect_to submission.attachment.url
+    file = open(submission.attachment.url)
+    send_data file.read, filename: submission.title
   end
 
   # DELETE /submissions/1

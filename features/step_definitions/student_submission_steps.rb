@@ -134,10 +134,10 @@ Given /^(?:|I )am on the submissions page for (.+?)$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
 end
 
-#When /^(?:|I )download the (.*) submission$/ do |download|
-#  submission = Submission.where(title: download).first
-#  page.find("#download_#{submission.project_id}_#{submission.id}").click
-#end
+When /^(?:|I )download the (.*) submission$/ do |download|
+  submission = Submission.where(title: download).first
+  page.find("#download_#{submission.id}").click
+end
 
 Then /^(?:|I )should see a successful download message for (.*)$/ do |submission|
   if page.respond_to? :should
@@ -145,4 +145,17 @@ Then /^(?:|I )should see a successful download message for (.*)$/ do |submission
   else
     assert page.has_content?("Successfully downloaded: https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
   end
+end
+
+Then (/^I should see a new window$/) do
+  window = page.drive.browser.window_handles
+  assert window.size > 1
+end
+
+When(/^I try to see projects for "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Given(/^I am on the projects page as "(.*?)"$/) do |username|
+  pending # express the regexp above with the code you wish you had
 end

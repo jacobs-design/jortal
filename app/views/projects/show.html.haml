@@ -19,7 +19,7 @@
         %td= check_box_tag "#{submission.id}", like_path(@project, submission), :checked => true
       - else
         %td= check_box_tag "#{submission.id}]", like_path(@project, submission)
-      %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank"
+      %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank", :id => "download_#{submission.id}"
 %br/
 
 :javascript
@@ -29,4 +29,5 @@
       });
       
   });
+
 

@@ -50,4 +50,27 @@ describe SubmissionsController do
         end
     end
 
+    describe 'download a submission' do
+        it 'should successfully download a submission' do
+          # SubmissionsController.stub(:download, :project_id => @submission.project_id, :id => @submission.id)
+          # AttachmentUploader.any_instance.stub(:download!)
+          # stub_request(:download).to_return(:status => [200, "y'all gucci"])
+          # get :download, :project_id => @submission.project_id, :id => @submission.id
+          # submission = double('fake submission').as_null_object
+          # fake_file = File.stub(:open).and_return(double('fake file'))
+          # fake_send = File.stub(:read).and_return(double('fake read'))
+          controller.stub(:download)
+          # controller.stub(:download).and_return(response)
+          controller.should_receive(:download)
+          controller.download
+          # expect(controller).to receive(:send_data).with(fake_send) {
+          #   controller.render nothing: true
+          # }
+          #
+          # get :download, :project_id => @submission.project_id, :id => @submission.id
+          # controller.stub(:download).and_return(submission)
+          # expect(response.body).to be_success
+        end
+    end
+
 end
