@@ -13,6 +13,8 @@ Jortal::Application.routes.draw do
   get 'projects/:project_id/submissions/:id/download', :to => 'submissions#download', as: 'download'
   get 'users/:id/projects', :to => 'users#projects', as: 'user_projects'
 
+  post 'projects/:project_id/submission/:id/like', :to => 'submissions#like', as: 'like'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -20,15 +20,6 @@ class ProjectsController < ApplicationController
     authorize @project
 
     @submissions = Submission.where(:project_id => @project.id)
-    if request.post?
-      @likes = params.has_key?(:likes) ? params[:likes] : []
-      @submissions.each do |submission|
-        like_submission = @likes.include? "#{@project.id}_#{submission.id}"
-        submission.like = like_submission
-        submission.save!
-      end
-    end
-
     respond_with @project
   end
 

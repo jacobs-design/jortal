@@ -56,6 +56,20 @@ class SubmissionsController < ApplicationController
 #      format.json { head :no_content }
 #    end
 #  end
+  # POST /submissions/1
+  def like
+    submission = Submission.find(params[:id])
+    authorize submission
+
+    if params[:checked] == "true"
+        submission.like = true
+    else
+        submission.like = false
+    end
+    submission.save
+
+    render :json => "success"
+  end
 
   def thank_you
   end

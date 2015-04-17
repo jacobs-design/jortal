@@ -5,5 +5,8 @@ class SubmissionPolicy < ApplicationPolicy
     def download?
         show?
     end
+    def like?
+        show?
+    end
 end
 
