@@ -91,12 +91,11 @@ When /I (un)?like the following submissions: (.*)/ do |unlike, submission_list|
   submission_list.delete(" ").split(",").each do |submission|
     @submission = Submission.where(:title => submission).first
     if unlike
-      uncheck("likes_#{@submission.project_id}_#{@submission.id}")
+      uncheck("#{@submission.id}")
     else
-      check("likes_#{@submission.project_id}_#{@submission.id}")
+      check("#{@submission.id}")
     end
   end
-  click_button("Submit Likes")
 end
 
 Then /^(?:|I )should be on the submissions page for "(.*)"$/ do |page_name|
