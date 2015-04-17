@@ -66,4 +66,7 @@ group :test, :development do
     gem 'rspec-rails', '~> 2.14.0'
     gem 'simplecov'
     gem 'selenium-webdriver'
+    gem 'phantomjs', :require => 'phantomjs/poltergeist'
+    gem 'poltergeist'
+    gem 'factory_girl_rails'
 end
