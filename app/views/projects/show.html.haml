@@ -1,32 +1,32 @@
 -#= button_to 'Add Moderators'
 = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }
 
--# = form_tag likes_path, :id => 'likes_form', :method => :post do
 %h1 Listing submissions for #{@project.name}
-= form_tag project_path(id: @project.id), :id => 'likes_form', :method => :post do
-  %table
+%table
+  %tr
+    %th Title
+    %th Submit Time
+    %th Submitter
+    %th Like
+    %th Download
+    %th
+  - @submissions.each do |submission|
     %tr
-      %th Title
-      %th Submit Time
-      %th Submitter
-      %th Like
-      %th Download
-      -# %th
-      %th
-    - @submissions.each do |submission|
-      %tr
-        %td= submission.title
-        %td= submission.created_at
-        %td= 'submitter'
-        - project_submission_key = "#{@project.id}_#{submission.id}"
-        - if submission.like
-          %td= check_box_tag "likes[#{project_submission_key}]", 1, true, :class => "checkbox"
-        - else
-          %td= check_box_tag "likes[#{project_submission_key}]", :class => "checkbox"
-        -# %td= check_box_tag(name: "likes[project_submission_key]", checked: liked_submissions[project_submission_key])
-        -# %td= link_to 'Edit', edit_project_submission_path(submission.project, submission)
-        -# %td= link_to 'Destroy', [submission.project, submission], method: :delete, data: { confirm: 'Are you sure?' }
-        %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank"
-  = submit_tag 'Submit Likes', :id => 'likes_submit'
+      %td= submission.title
+      %td= submission.created_at
+      %td= 'submitter'
+      - if submission.like
+        %td= check_box_tag "#{submission.id}", 1, true, :class => "checkbox"
+      - else
+        %td= check_box_tag "#{submission.id}]", :class => "checkbox"
+      %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank"
 %br/
+
+:javascript
+  $(document).ready(function() {
+    $(":checkbox").click(function() {
+      $.post("/projects/#{@project.id}/submission/"+this.id+"/like", {"checked": this.checked});
+      });
+      
+  });
 
