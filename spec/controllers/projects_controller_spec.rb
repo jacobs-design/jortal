@@ -22,11 +22,11 @@ describe ProjectsController do
     end
     it 'renders the index template at /' do
       visit '/'
-      expect(response).to render_template('index')
+      expect(response).to render_template('projects/submit_submission')
     end
     it 'renders the index template at /projects' do
       visit '/projects'
-      expect(response).to render_template('index')
+      expect(response).to render_template('projects/submit_submission')
     end
     context 'not a user' do
       it 'redirects to the project submission form' do
