@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     authorize Project
     @user = current_user
 
-#respond_with @projects
+    respond_with @projects
   end
 
   # GET /projects/1

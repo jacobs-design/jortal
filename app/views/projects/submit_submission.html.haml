@@ -1,9 +1,20 @@
-%h1 Submit a Project to Jacobs Institute
+.container-full
+  .row
+    .col-lg-12.text-center.v-center
+      %h1 Project Submission
+      = form_tag nil, id: 'submit-project-form', class: 'form-box center-block' do
+        .form-group
+          = select_tag 'project', options_from_collection_for_select(@projects, 'id', 'name'), prompt: 'Select a class project...', id: 'project-select', class: 'form-control input-lg'
+        .form-group
+          = text_field_tag 'submission_title', nil, placeholder: 'Title', class: 'form-control input-lg'
+        .form-group
+          = text_area_tag 'submission_desc', nil, placeholder: 'Description', rows: '3', class: 'form-control input-lg'
+        .form-group.input-group
+          %span.input-group-btn
+            %span.btn.btn-primary.btn-file.btn-lg
+              Browse&hellip;
+              = file_field_tag 'upload'
+          = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
+        .form-group
+          = submit_tag nil, class: 'btn btn-primary btn-lg btn-block'
 
-%div (Explaination text)
-
-= form_tag :remote => true do
-  = select_tag 'project', options_from_collection_for_select(@projects, "id", "name"), prompt: "Choose a Project", onchange: "showForm(this.value)"
-%br/
-#generate_form
-  %div
