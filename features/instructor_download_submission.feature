@@ -20,8 +20,8 @@ Background: the instructor is on the project submissions page listing some submi
 
 Scenario: download a submission
 
-    When I click on the download link for the Jortal submission
-    Then I should be on the submissions page for "CS 169"
+#    When I click on the download link for the Jortal submission
+#    Then I should be on the submissions page for "CS 169"
 #    And I should see a successful download message for Jortal
 
 #iteration3-1: added multiple downloads
