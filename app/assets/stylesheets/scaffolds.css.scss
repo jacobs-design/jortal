@@ -1,15 +1,56 @@
-body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+@import url(http://fonts.googleapis.com/css?family=Merriweather);
+
+h1 {
+  font-family: 'Merriweather', serif;
+  font-size: 5em;
+  color: #fff;
 }
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100%;
+  background-color: #124;
+  color: #ddd;
+  overflow: hidden;
+}
+
+.v-center {
+  margin-top: 7%;
+}
+
+.form-box {
+  width: 30%;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+html, body {
+  background-color: #fff;
+  color: #333;
+  height: 100%;
 }
 
 pre {
