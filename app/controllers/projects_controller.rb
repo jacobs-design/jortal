@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   after_filter :verify_authorized, :except => [:submit_submission]
   respond_to :html, :json
 
-  rescue_from Pundit::NotAuthorizedError, with: :redirect_to_submit_submission
+  rescue_from Pundit::NotAuthorizedError, ActiveRecord::RecordNotFound, with: :redirect_to_submit_submission
 
   # GET /projects
   def index
