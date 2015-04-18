@@ -1,18 +1,17 @@
 class ProjectsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
-  after_filter :verify_authorized, :except => [:index, :submit_submission]
+  after_filter :verify_authorized, :except => [:submit_submission]
   respond_to :html, :json
+
+  rescue_from Pundit::NotAuthorizedError, with: :redirect_to_submit_submission
 
   # GET /projects
   def index
-    if not is_user?
-      return redirect_to submit_submission_projects_url
-    end
-
     @projects = Project.all
+    authorize Project
     @user = current_user
 
-    respond_with @projects
+#respond_with @projects
   end
 
   # GET /projects/1
@@ -27,6 +26,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @project.users = [current_user]
     authorize @project
 
     respond_with @project
@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(params[:project])
+    @project.users = [current_user]
     authorize @project
 
     flash[:notice] = 'Project was successfully created.' if @project.save
@@ -50,11 +51,15 @@ class ProjectsController < ApplicationController
 
     respond_with @project
   end
-  
+
   def submit_submission
     @projects = Project.all
 
     respond_with @projects
+  end
+
+  def redirect_to_submit_submission
+    redirect_to submit_submission_projects_url
   end
 
 end

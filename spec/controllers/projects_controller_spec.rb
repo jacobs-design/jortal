@@ -7,6 +7,7 @@ describe ProjectsController do
     @not_user = User.create(name: "Jack", email: "jackiscool@berkeley.edu", uid: 991334, admin: false)
     CASClient::Frameworks::Rails::Filter.fake('994946')
     @project1 = Project.create(name: 'CS 169', desc: 'Rails app development')
+    @project1.users = [@user]
     @submission1_1 = Submission.create(
       title: 'submission test',
       desc: 'test submission desc',
@@ -16,17 +17,18 @@ describe ProjectsController do
     @project2 = Project.create(name: 'CS 186', desc: 'Apache Spark business')
   end
   describe 'GET #index' do
+    it 'renders the index template at /' do
+      visit '/'
+      puts page.inspect
+      expect(page).to render_template('index')
+    end
     it 'renders the index template with get' do
       get :index
       expect(response).to render_template('index')
     end
-    it 'renders the index template at /' do
-      visit '/'
-      expect(response).to render_template('projects/submit_submission')
-    end
     it 'renders the index template at /projects' do
       visit '/projects'
-      expect(response).to render_template('projects/submit_submission')
+      expect(page).to render_template('index')
     end
     context 'not a user' do
       it 'redirects to the project submission form' do
@@ -73,7 +75,7 @@ describe ProjectsController do
       it 'redirects to the front page' do
         CASClient::Frameworks::Rails::Filter.fake('1337')
         get :show, :id => @project1.id
-        expect(response).to redirect_to projects_url
+        expect(response).to redirect_to submit_submission_projects_url
       end
     end
   end

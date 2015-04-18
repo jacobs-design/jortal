@@ -13,16 +13,17 @@ postgresql: &postgresql
 sqlite3: &sqlite3
   <<: *defaults
   adapter: sqlite3
-  database: db/<%= Rails.env %>.sqlite3
 
 development:
   <<: *sqlite3
+  database: db/development.sqlite3
  
 test: &test
   <<: *sqlite3
+  database: db/test.sqlite3
  
 production:
-  <<: *defaults
+  <<: *postgresql
 
 cucumber:
   <<: *test
