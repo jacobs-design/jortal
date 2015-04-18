@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @project.users = [current_user]
     authorize @project
 
     respond_with @project
@@ -34,6 +35,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(params[:project])
+    @project.users = [current_user]
     authorize @project
 
     flash[:notice] = 'Project was successfully created.' if @project.save

@@ -50,4 +50,12 @@ describe SubmissionsController do
         end
     end
 
+    describe 'download a submission' do
+        it 'should successfully download a submission' do
+          controller.stub(:download)
+          controller.should_receive(:download)
+          controller.download
+        end
+    end
+
 end

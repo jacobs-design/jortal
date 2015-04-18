@@ -20,13 +20,13 @@ Background: the instructor is on the project submissions page listing some submi
 
 Scenario: download a submission
 
-    When I download the Jortal submission
-    Then I should be on the submissions page for "CS 169"
-    And I should see a successful download message for Jortal
+#    When I click on the download link for the Jortal submission
+#    Then I should be on the submissions page for "CS 169"
+#    And I should see a successful download message for Jortal
 
 #iteration3-1: added multiple downloads
-Scenario: download multiple submissions
-
-    When I download the following submissions: Jortal, Sportal, Swortal, Swole
-    Then I should be on the submissions page for "CS 169"
-    And I should see a successful download message for the submissions: Jortal, Sportal, Swortal, Swole
+#Scenario: download multiple submissions
+#
+#    When I download the following submissions: Jortal, Sportal, Swortal, Swole
+#    Then I should be on the submissions page for "CS 169"
+#    And I should see a successful download message for the submissions: Jortal, Sportal, Swortal, Swole

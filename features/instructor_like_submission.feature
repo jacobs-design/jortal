@@ -19,18 +19,21 @@ Background: the instructor is on the project submissions page listing some submi
     And I am on the submissions page for CS 169
 
 #iteration3-1: make likes/unlikes save upon click
+@javascript
 Scenario: like a submission
 
     When I like the following submissions: Jortal
     Then I should be on the submissions page for "CS 169"
     And the following submissions should be liked: Jortal, Sportal, Swortal
 
+@javascript
 Scenario: unlike a submission
 
     When I unlike the following submissions: Sportal
     Then I should be on the submissions page for "CS 169"
     And the following submissions should be unliked: Jortal, Sportal, Swole
 
+@javascript
 Scenario: like and unlike multiple submissions
 
     When I like the following submissions: Jortal, Swole

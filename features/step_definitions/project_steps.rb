@@ -8,15 +8,27 @@ Given /^I am on the projects list page$/ do
   visit "/projects"
 end
 
+Given /^I am on the projects page as "(.*?)"$/ do |u1|
+  uid = User.where(name: u1).first.uid
+  CASClient::Frameworks::Rails::Filter.fake(uid.to_s)
+  visit "/projects"
+end
+
+
 Given /^the following projects exist:$/ do |table|
   table.hashes.each do |project|
   	Project.new do |p|
       p.id = project[:id]
       p.name = project[:name]
       p.desc = project[:desc]
+      p.users = User.where(name: project[:users])
       p.save
     end
   end
+end
+
+When(/^I click on "(.*?)"$/) do | lnk |
+  click_on(lnk)
 end
 
 When(/^I create a project with the name "(.*?)" and description "(.*?)"$/) do |name, desc|
@@ -25,6 +37,11 @@ When(/^I create a project with the name "(.*?)" and description "(.*?)"$/) do |n
   fill_in("project_desc", :with => desc)
   click_button("Create Project")
 end
+
+When(/^I see projects for "(.*?)"$/) do |name|
+  visit "/users/" + User.where(name: name).pluck(:id)[0].to_s + "/projects"
+end
+
 
 Then /^I should be on the project show page for "(.*?)"$/ do |name|
   current_path = URI.parse(current_url).path

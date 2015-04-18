@@ -91,12 +91,11 @@ When /I (un)?like the following submissions: (.*)/ do |unlike, submission_list|
   submission_list.delete(" ").split(",").each do |submission|
     @submission = Submission.where(:title => submission).first
     if unlike
-      uncheck("likes_#{@submission.project_id}_#{@submission.id}")
+      uncheck("#{@submission.id}")
     else
-      check("likes_#{@submission.project_id}_#{@submission.id}")
+      check("#{@submission.id}")
     end
   end
-  click_button("Submit Likes")
 end
 
 Then /^(?:|I )should be on the submissions page for "(.*)"$/ do |page_name|
@@ -135,10 +134,10 @@ Given /^(?:|I )am on the submissions page for (.+?)$/ do |page_name|
   visit '/projects/' + Project.where(name: page_name).pluck(:id)[0].to_s
 end
 
-#When /^(?:|I )download the (.*) submission$/ do |download|
-#  submission = Submission.where(title: download).first
-#  page.find("#download_#{submission.project_id}_#{submission.id}").click
-#end
+When /^(?:|I )download the (.*) submission$/ do |download|
+  submission = Submission.where(title: download).first
+  page.find("#download_#{submission.id}").click
+end
 
 Then /^(?:|I )should see a successful download message for (.*)$/ do |submission|
   if page.respond_to? :should
@@ -146,4 +145,9 @@ Then /^(?:|I )should see a successful download message for (.*)$/ do |submission
   else
     assert page.has_content?("Successfully downloaded: https://s3.amazonaws.com/jortal.herokuapp.com/uploads/test.txt")
   end
+end
+
+Then (/^I should see a new window$/) do
+  window = page.drive.browser.window_handles
+  assert window.size > 1
 end

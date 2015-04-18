@@ -17,18 +17,9 @@ describe ProjectsController do
     @project2 = Project.create(name: 'CS 186', desc: 'Apache Spark business')
   end
   describe 'GET #index' do
-    it 'renders the index template at /' do
-      visit '/'
-      puts page.inspect
-      expect(page).to render_template('index')
-    end
     it 'renders the index template with get' do
       get :index
       expect(response).to render_template('index')
-    end
-    it 'renders the index template at /projects' do
-      visit '/projects'
-      expect(page).to render_template('index')
     end
     context 'not a user' do
       it 'redirects to the project submission form' do
