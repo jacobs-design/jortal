@@ -15,12 +15,6 @@ Background: course exists and is ready for submissions
     And I am on the project submission page
 
 @javascript
-Scenario: select a project should show correct form
-
-    When I select "CS 169" from the dropdown menu
-    Then I should see "Software Engineering"
-
-@javascript
 Scenario: submit a project with all required fields present
 
     When I select "CS 169" from the dropdown menu
@@ -36,5 +30,5 @@ Scenario: submit a project with missing required fields
     When I fill in "submission_title" with ""
     And I follow "Submit"
 
-    Then I should be back on the CS 186 project submission page
-    And I should see "Missing requirement(s)"
+    Then I should be on the project submission page
+

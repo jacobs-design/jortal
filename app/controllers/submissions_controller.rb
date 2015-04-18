@@ -23,10 +23,7 @@ class SubmissionsController < ApplicationController
   # POST /submissions
   # POST /submissions.json
   def create
-    puts params[:submission]
     @submission = Submission.new(params[:submission])
-    puts @submission.inspect
-    puts @submission.errors
 
     respond_to do |format|
       if @submission.save
