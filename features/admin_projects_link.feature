@@ -14,7 +14,7 @@ Background: users and projects in the database
   | Kenneth Lam | lam.c.kenneth@berkeley.edu  | 994946  | false |
 
   And the following projects exist:
-  | name                    | desc                        | instructor  |
+  | name                    | desc                        | users       |
   | "CS 186 Spark Intro"    | "Learning how to use Spark" | Arlan Jaska |
   | "CS 188 Solving Pacman" | "Using AI to solve Pacman"  | Jack Chou   |
   | "CS 666 Death Coding"   | "Face your doom"            | Arlan Jaska |
@@ -22,7 +22,7 @@ Background: users and projects in the database
 #Happy
 Scenario: See projects associated with an instructor
   Given I am on the users page as "Terry Tsai"
-  When I try to see projects for "Arlan Jaska"
+  When I see projects for "Arlan Jaska"
   Then I should see "CS 186 Spark Intro"
   And I should see "CS 666 Death Coding"
   And I should not see "CS 188 Solving Pacman"

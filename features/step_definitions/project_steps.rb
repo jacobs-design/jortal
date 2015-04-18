@@ -38,6 +38,11 @@ When(/^I create a project with the name "(.*?)" and description "(.*?)"$/) do |n
   click_button("Create Project")
 end
 
+When(/^I see projects for "(.*?)"$/) do |name|
+  visit "/users/" + User.where(name: name).pluck(:id)[0].to_s + "/projects"
+end
+
+
 Then /^I should be on the project show page for "(.*?)"$/ do |name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
