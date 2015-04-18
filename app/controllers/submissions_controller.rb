@@ -15,6 +15,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new
   # GET /submissions/new.json
   def new
+    # TODO: redirect to submission form; optionally turn into REST endpoint
     @submission = Submission.new
 
     respond_with @submission
