@@ -151,11 +151,3 @@ Then (/^I should see a new window$/) do
   window = page.drive.browser.window_handles
   assert window.size > 1
 end
-
-When(/^I try to see projects for "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I am on the projects page as "(.*?)"$/) do |username|
-  pending # express the regexp above with the code you wish you had
-end
