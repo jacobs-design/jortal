@@ -95,6 +95,7 @@ When /I (un)?like the following submissions: (.*)/ do |unlike, submission_list|
     else
       check("#{@submission.id}")
     end
+    visit current_path
   end
 end
 
