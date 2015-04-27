@@ -1,22 +1,23 @@
-%h1 All Projects
-= link_to 'Add Project', new_project_path, :id => "add_project"
-%br/
-= link_to 'View my projects only', user_projects_path(@user)
-%br/
+.container-fluid
+  %h1 All Projects
+  = link_to 'Add Project', new_project_path, :id => "add_project", class: "btn-default btn btn-primary"
+  = link_to 'View My Projects Only', user_projects_path(@user), class: "btn-default btn btn-primary"
+  = link_to 'Manage Users', users_path, method: :get, class: "btn-default btn btn-primary"
+  %br/
 
-%table#projects
-  %thead.row
-    %tr.row-same-height
-      %th{:class => session[:title_sort] ? 'hilite' : "col-xs-3 col-xs-height col-full-height"}= link_to "Project Name", projects_path(:title_sort => true, :id => "project_name")
-      %th{:class => "col-xs-6 col-xs-height col-full-height"}= "Project Description"
-      %th{:class => "col-xs-1 col-xs-height col-full-height"}= "# of Submissions"
-      %th{:class => "col-xs-2 col-xs-height col-full-height"}= "Assigned Instructors"
-  %tbody.row
-    - @projects.each do |project|
-      %tr.row-same.height
-        %td{:class => "col-xs-3 col-xs-height col-full-height"}= link_to "#{project.name}", project_path(project)
-        %td{:class => "col-xs-6 col-xs-height col-full-height"}= project.desc
-        %td{:class => "col-xs-1 col-xs-height col-full-height"}= project.submissions.count
-        %td{:class => "col-xs-2 col-xs-height col-full-height"}= project.users.map! { |k| "#{k.name}" }.join ", "
+  %table{:id => "projects", :class => "table"}
+    %thead.row
+      %tr.row-same-height
+        %th{:class => session[:title_sort] ? 'hilite' : "col-xs-3 col-xs-height col-full-height"}= link_to "Project Name", projects_path(:title_sort => true, :id => "project_name")
+        %th{:class => "col-xs-6 col-xs-height col-full-height"}= "Project Description"
+        %th{:class => "col-xs-1 col-xs-height col-full-height"}= "# of Submissions"
+        %th{:class => "col-xs-2 col-xs-height col-full-height"}= "Assigned Instructors"
+    %tbody.row
+      - @projects.each do |project|
+        %tr{:class => "row-same-height lite"}
+          %td{:class => "col-xs-3 col-xs-height col-full-height"}= link_to "#{project.name}", project_path(project)
+          %td{:class => "col-xs-6 col-xs-height col-full-height"}= project.desc
+          %td{:class => "col-xs-1 col-xs-height col-full-height"}= project.submissions.count
+          %td{:class => "col-xs-2 col-xs-height col-full-height"}= project.users.map! { |k| "#{k.name}" }.join ", "
 
 

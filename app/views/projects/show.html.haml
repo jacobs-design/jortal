@@ -1,28 +1,33 @@
 -#= button_to 'Add Moderators'
-= button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }
 
-%h1 Listing submissions for #{@project.name}
-%div=@project.desc
-%br/
-%table
-  %tr
-    %th Title
-    %th Submit Time
-    %th Submitter
-    %th Like
-    %th Download
-    %th
-  - @submissions.each do |submission|
-    %tr
-      %td= submission.title
-      %td= submission.created_at
-      %td= 'submitter'
-      - if submission.like
-        %td= check_box_tag "#{submission.id}", like_path(@project, submission), :checked => true
-      - else
-        %td= check_box_tag "#{submission.id}", like_path(@project, submission)
-      %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank", :id => "download_#{submission.id}"
-%br/
+.container-fluid
+  %br/
+  = button_to 'Back to Projects', projects_path, method: :get, class: "btn-default btn btn-primary"
+  %h1 Listing submissions for #{@project.name}
+  %div=@project.desc
+  %br/
+  = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-default btn btn-primary"
+  %br/
+  %table{:class => "table"}
+    %thead.row
+      %tr.row-same-height
+        %th Title
+        %th Submit Time
+        %th Submitter
+        %th Like
+        %th Download
+    %tbody.row
+      - @submissions.each do |submission|
+        %tr{:class => "row-same-height lite"}
+          %td= submission.title
+          %td= submission.created_at
+          %td= 'submitter'
+          - if submission.like
+            %td= check_box_tag "#{submission.id}", like_path(@project, submission), :checked => true
+          - else
+            %td= check_box_tag "#{submission.id}", like_path(@project, submission)
+          %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank", :id => "download_#{submission.id}", :class => "btn-default btn btn-primary"
+  %br/
 
 :javascript
   $(document).ready(function() {

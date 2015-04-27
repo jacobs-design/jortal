@@ -66,13 +66,19 @@ a {
   }
   &:hover {
     color: #000;
-    background-color: #fff;
   }
 }
 
 div {
   &.field, &.actions {
     margin-bottom: 10px;
+  }
+}
+
+tr.lite {
+  &:hover {
+    color: #000;
+    background-color: #ccc;
   }
 }
 

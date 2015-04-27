@@ -1,39 +1,43 @@
-%h1 Listing users
-= form_for :user, method: :put, :html => { :id => "users_table_form" } do |f|
-  %table{:id => 'users'}
-    %tr
-      %th Name
-      %th Uid
-      %th Email
-      %th User Type
-      %th
-      %th
-      %th
-      %th
-    - @users.each do |user|
-      %tr
-        %td= user.name
-        %td= user.uid
-        %td= user.email
-        %td= user.admin ? 'Admin' : 'Instructor'
-        %td= link_to 'Edit', edit_user_path(user), :class => 'users_edit_button'
-        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
-        %td= link_to 'Owned Projects', user_projects_path(user)
-        %td{:style => 'display: none;'}= user.id 
+.container-fluid
+  %br/
+  = button_to 'Back to Projects', projects_path, method: :get, class: "btn-default btn btn-primary"
+  %h1 Listing users
+  = form_for :user, method: :put, :html => { :id => "users_table_form" } do |f|
+    %table{:id => 'users', :class => "table"}
+      %thead.row
+        %tr.row-same-height
+          %th{:class => "col-xs-3 col-xs-height col-full-height"} Name
+          %th{:class => "col-xs-1 col-xs-height col-full-height"} Uid
+          %th{:class => "col-xs-3 col-xs-height col-full-height"} Email
+          %th{:class => "col-xs-1 col-xs-height col-full-height"} User Type
+          %th{:class => "col-xs-1 col-xs-height col-full-height"}
+          %th{:class => "col-xs-1 col-xs-height col-full-height"}
+          %th{:class => "col-xs-2 col-xs-height col-full-height"}
+      %tbody.row
+        - @users.each do |user|
+          %tr{:class => "row-same-height lite"}
+            %td{:class => "col-xs-3 col-xs-height col-full-height"}= user.name
+            %td{:class => "col-xs-1 col-xs-height col-full-height"}= user.uid
+            %td{:class => "col-xs-3 col-xs-height col-full-height"}= user.email
+            %td{:class => "col-xs-1 col-xs-height col-full-height"}= user.admin ? 'Admin' : 'Instructor'
+            %td{:class => "col-xs-1 col-xs-height col-full-height"}= link_to 'Edit', edit_user_path(user), :class => 'users_edit_button'
+            %td{:class => "col-xs-1 col-xs-height col-full-height"}= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+            %td{:class => "col-xs-2 col-xs-height col-full-height"}= link_to 'Owned Projects', user_projects_path(user)
+            //%td{:style => 'display: none;'}= user.id 
 
-%br/
-//= link_to 'New User', new_user_path
-= form_for(User.new) do |f|
-  = f.label :name
-  = f.text_field :name
+  %br/
+  //= link_to 'New User', new_user_path
+  = form_for(User.new) do |f|
+    = f.label :name
+    = f.text_field :name
 
-  = f.label :uid
-  = f.number_field :uid
+    = f.label :uid
+    = f.number_field :uid
 
-  = f.label :email
-  = f.text_field :email
+    = f.label :email
+    = f.text_field :email
 
-  = f.label :admin
-  = f.check_box :admin
+    = f.label :admin
+    = f.check_box :admin
 
-  = f.submit
+    = f.submit "Add User", :class => "btn-default btn btn-primary"
