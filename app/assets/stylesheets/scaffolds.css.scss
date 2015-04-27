@@ -48,8 +48,8 @@ input[readonly] {
 }
 
 html, body {
-  background-color: #fff;
-  color: #333;
+  background-color: #124;
+  color: #fff;
   height: 100%;
 }
 
@@ -60,13 +60,13 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #fff;
   &:visited {
-    color: #666;
+    color: #aaa;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #000;
+    background-color: #fff;
   }
 }
 
@@ -74,6 +74,10 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+}
+
+td {
+  padding:5px;
 }
 
 #notice {
