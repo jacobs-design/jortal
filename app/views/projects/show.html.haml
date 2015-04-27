@@ -2,6 +2,8 @@
 = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }
 
 %h1 Listing submissions for #{@project.name}
+%div=@project.desc
+%br/
 %table
   %tr
     %th Title
