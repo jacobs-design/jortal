@@ -1,20 +1,24 @@
-%h1 All Projects
 
-%table#projects
-  %thead
-    %tr
-      %th{:class => session[:title_sort] ? 'hilite' : nil}= link_to "Project Name", projects_path(:title_sort => true, :id => "project_name")
-      %th= "Project Description"
-      %th= "# of Submissions"
-      %th= "Assigned Instructors"
-  %tbody
-    - @projects.each do |project|
-      %tr
-        %td= link_to "#{project.name}", project_path(project)
-        %td= project.desc
-        %td= project.submissions.count
-        %td= project.users.map! { |k| "#{k.name}" }.join ", "
-
-= link_to 'Add Project', new_project_path, :id => "add_project"
-= link_to 'View my projects only', user_projects_path(@user)
+.container-full
+  .row
+    .col-lg-12
+      %h1 All Projects
+      .table-responsive
+        %table#projects
+          %thead
+            %tr
+              %th{:class => session[:title_sort] ? 'hilite' : nil}= link_to "Project Name", projects_path(:title_sort => true, :id => "project_name")
+              %th= "# of Submissions"
+              %th= "Assigned Instructors"
+          %tbody
+            - @projects.each do |project|
+              %tr
+                %td= link_to "#{project.name}", project_path(project)
+                %td= project.submissions.count
+                %td= project.users.map! { |k| "#{k.name}" }.join ", "
+      .btn-group.btn-default
+        .btn.btn-default
+          = link_to 'Add Project', new_project_path, :id => "add_project"
+        .btn.btn-default
+          = link_to 'View my projects only', user_projects_path(@user)
 

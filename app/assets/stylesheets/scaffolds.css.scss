@@ -60,13 +60,16 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #666;
   &:visited {
+    text-decoration: none;
+    decoration: none;
     color: #666;
   }
   &:hover {
     color: #fff;
-    background-color: #000;
+    background-color: none;
+    text-decoration: none;
   }
 }
 
@@ -108,3 +111,21 @@ div {
     list-style: square;
   }
 }
+
+.link:hover {
+  text-decoration: none;
+}
+
+.center-block {
+  display: block;
+  margin: auto;
+}
+
+.show-project-table {
+  padding: 30px;
+}
+
+.left-pad {
+  padding-left: 3%;
+}
+
