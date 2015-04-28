@@ -44,7 +44,7 @@ When /^I add a new user with name "(.*?)" and email "(.*?)" and uid "(.*?)" and 
   else 
     uncheck("Admin")
   end
-  click_button("Create User")
+  click_button("Add User")
 end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
