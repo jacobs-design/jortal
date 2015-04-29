@@ -125,13 +125,12 @@ input {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
-  display: table;
+  background-color: rgb(237, 104, 81);
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  width: 100%;
+  border: 2px solid rgb(237, 104, 81);
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
@@ -143,11 +142,17 @@ input {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
+    background-color: rgb(183, 95, 83);
     color: #fff;
   }
   ul li {
+    color: #000;
     font-size: 12px;
     list-style: square;
   }
+}
+
+h4.error_msg {
+  color: rgb(237, 104, 81);
+  text-decoration: underline;
 }
