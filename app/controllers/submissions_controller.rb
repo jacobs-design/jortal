@@ -15,16 +15,17 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new
   # GET /submissions/new.json
   def new
+    redirect_to submit_submission_projects_url
     # TODO: redirect to submission form; optionally turn into REST endpoint
-    @submission = Submission.new
+# @submission = Submission.new
 
-    respond_with @submission
+# respond_with @submission
   end
 
   # POST /submissions
   # POST /submissions.json
   def create
-    @submission = Submission.new(params[:submission])
+    @submission = Submission.new(params[:submission].merge({"project_id" => params[:project_id]}))
 
     respond_to do |format|
       if @submission.save
