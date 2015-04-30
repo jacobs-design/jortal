@@ -10,15 +10,33 @@
         .form-group
           = select_tag 'project', options_from_collection_for_select(@projects, 'id', 'name'), prompt: 'Select a class project...', id: 'project-select', class: 'form-control input-lg'
         .form-group
-          = text_area_tag 'submission[desc]', nil, readonly: true, placeholder: 'Project description', rows: '5', class: 'form-control input-lg'
-        .form-group
-          = text_field_tag 'submission[title]', nil, placeholder: 'Submission title', class: 'form-control input-lg'
-        .form-group.input-group
-          %span.input-group-btn
-            %span.btn.btn-primary.btn-file.btn-lg
-              Browse&hellip;
-              = file_field_tag 'submission[attachment]'
-          = text_field_tag 'submission_filename', nil, readonly: true, class: 'form-control input-lg'
+          = text_area_tag 'submission[desc]', nil, readonly: true, placeholder: 'Project Description', rows: '5', class: 'form-control input-lg'
+        - if flash[:errors]
+          .form-group.field_with_errors
+            = text_field_tag 'submission[name]', nil, placeholder: 'Name', class: 'form-control input-lg'
+        - else
+          .form-group
+            = text_field_tag 'submission[name]', nil, placeholder: 'Name', class: 'form-control input-lg'
+        - if flash[:errors]
+          .form-group.field_with_errors
+            = text_field_tag 'submission[title]', nil, placeholder: 'Title', class: 'form-control input-lg'
+        - else
+          .form-group
+            = text_field_tag 'submission[title]', nil, placeholder: 'Title', class: 'form-control input-lg'
+        - if flash[:errors]
+          .form-group.input-group.field_with_errors
+            %span.input-group-btn
+              %span.btn.btn-primary.btn-file.btn-lg
+                Browse&hellip;
+                = file_field_tag 'submission[attachment]'
+            = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
+        - else
+          .form-group.input-group
+            %span.input-group-btn
+              %span.btn.btn-primary.btn-file.btn-lg
+                Browse&hellip;
+                = file_field_tag 'submission[attachment]'
+            = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
         .form-group
           = submit_tag 'Submit', class: 'btn btn-primary btn-lg btn-block'
 

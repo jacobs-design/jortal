@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150415234128) do
+ActiveRecord::Schema.define(:version => 20150430054002) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20150415234128) do
     t.datetime "updated_at",                    :null => false
     t.boolean  "like",       :default => false
     t.string   "attachment"
+    t.string   "name"
   end
 
   add_index "submissions", ["project_id"], :name => "index_submissions_on_project_id"

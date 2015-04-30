@@ -79,6 +79,7 @@ end
 Given /^the following submissions exist:$/ do |table|
   table.hashes.each do |submission|
     Submission.create(
+        name: submission[:name],
         title: submission[:title],
         desc: submission[:desc],
         project_id: submission[:project_id],
@@ -90,11 +91,7 @@ end
 When /I (un)?like the following submissions: (.*)/ do |unlike, submission_list|
   submission_list.delete(" ").split(",").each do |submission|
     @submission = Submission.where(:title => submission).first
-    if unlike
-      uncheck("#{@submission.id}")
-    else
-      check("#{@submission.id}")
-    end
+    find("#checkbox-#{@submission.id}").trigger('click')
     visit current_path
   end
 end

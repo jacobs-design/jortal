@@ -11,11 +11,11 @@ Background: the instructor is on the project submissions page listing some submi
     | id | name   | desc                  |
     | 69 | CS 169 | Non-profit rails apps |
     And the following submissions exist:
-    | title   | desc                     | project_id | attachment           | like  |
-    | Jortal  | Jacobs Project Portal    | 69         | test_files/test.txt  | false |
-    | Sportal | Spacobs Project Portal   | 69         | test_files/test.txt  | true  |
-    | Swortal | Swaggiest Project Portal | 69         | test_files/test.txt  | true  |
-    | Swole   | Swole Portal             | 69         | test_files/test.txt  | false |
+    | title   | name       | desc                     | project_id | attachment           | like  |
+    | Jortal  | Nobody     | Jacobs Project Portal    | 69         | test_files/test.txt  | false |
+    | Sportal | Hella      | Spacobs Project Portal   | 69         | test_files/test.txt  | true  |
+    | Swortal | Swag       | Swaggiest Project Portal | 69         | test_files/test.txt  | true  |
+    | Swole   | Swanderful | Swole Portal             | 69         | test_files/test.txt  | false |
     And I am on the submissions page for CS 169
 
 #iteration3-1: make likes/unlikes save upon click
