@@ -73,6 +73,7 @@ div {
 
 .btn-primary {
   font-family: 'brandon-grotesque', serif;
+  font-weight: 700;
   text-transform: uppercase;
   background-color: rgb(13, 160, 156);
   border-color: rgb(10, 146, 139);
@@ -84,7 +85,7 @@ div {
 tr.lite {
   &:hover {
     color: #fff;
-    background-color: #444;
+    background-color: #235;
   }
 }
 
