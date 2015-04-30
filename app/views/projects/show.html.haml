@@ -23,7 +23,8 @@
           %td= submission.created_at
           %td= 'submitter'
           - if submission.like
-            %td= check_box_tag "#{submission.id}", like_path(@project, submission), :checked => true
+            %td= check_box_tag "#{submission.id}", like_path(@project, submission), :checked => true, :class => 'css-checkbox', :id => 'checkbox#{submission.id}'
+            = label_tag 'checkbox#{submission.id}', '', :class => 'css-label'
           - else
             %td= check_box_tag "#{submission.id}", like_path(@project, submission)
           %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank", :id => "download_#{submission.id}", :class => "btn-default btn btn-primary"
