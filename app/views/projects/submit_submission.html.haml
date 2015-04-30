@@ -1,11 +1,9 @@
-.container-fluid
+.container
   .row
     .col-lg-12.text-center.v-center
       %h1 Project Submission
-      %div{:class => "desc form-box center-block"}= "The Jacobs Institute for Design Innovation is Berkeley’s interdisciplinary hub for students, teachers and practitioners who love working at the intersection of design and technology. Did you design and build something amazing in Jacobs Hall? Do you want to show it off to the design community at Berkeley and beyond? Upload your best project documentation materials here for a chance to be showcased on the #{link_to 'Jacobs Institute website', 'http://jacobsinstitute.berkeley.edu/learn/student-projects/'}. If your project is selected, you will be notified before your materials are used. By submitting your project to this site, you agree to have your project featured publicly on the Jacobs website.".html_safe
-      %br/
-      %div{:class => "desc form-box center-block"}= "Got questions? Contact #{mail_to 'jacobsinstitute@berkeley.edu', 'jacobsinstitute@berkeley.edu'}".html_safe
-      %br/
+      %p The Jacobs Institute for Design Innovation is Berkeley’s interdisciplinary hub for students, teachers and practitioners who love working at the intersection of design and technology. Did you design and build something amazing in Jacobs Hall? Do you want to show it off to the design community at Berkeley and beyond? Upload your best project documentation materials here for a chance to be showcased on the #{link_to 'Jacobs Institute website', 'http://jacobsinstitute.berkeley.edu/learn/student-projects/'}. If your project is selected, you will be notified before your materials are used. By submitting your project to this site, you agree to have your project featured publicly on the Jacobs website.
+      %p= "Got questions? Contact #{mail_to 'jacobsinstitute@berkeley.edu', 'jacobsinstitute@berkeley.edu'}".html_safe
       = form_tag nil, id: 'submit-project-form', class: 'form-box center-block', multipart: 'true' do
         - if flash[:errors]
           %h4.error_msg Fill out all the fields!
