@@ -57,26 +57,14 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: #fff;
-  &:hover {
-    color: rgb(13, 160, 156);
-  }
+a, a:hover {
+  color: rgb(13, 160, 156);;
 }
 
 div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
-}
-
-div.desc {
-  width: 50%;
-  margin: auto;
-}
-
-div.desc a {
-  color: rgb(13, 160, 156);
 }
 
 .btn-primary {
