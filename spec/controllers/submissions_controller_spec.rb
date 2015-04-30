@@ -13,7 +13,7 @@ describe SubmissionsController do
     describe 'new submission' do
         it 'should show the new submission form for this project' do
             get :new, :project_id => @project.id
-            expect(response).to be_success
+            expect(response).to_not be_success
         end
     end
     describe 'thank you page' do

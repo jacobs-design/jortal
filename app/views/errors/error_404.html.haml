@@ -1,0 +1,15 @@
+.container-fluid
+  .row
+    .col-lg-12.text-center.v-center
+      %h1 404
+      %div
+        %h3 We're sorry.
+        %div.desc
+          The content that you requested could not be found.
+          %br/
+          You tried to access '#{@not_found_path}', which is not a valid page.
+          %br/
+          %br/
+          %a{href: projects_path} Go back to our home page
+          and try again?
+
