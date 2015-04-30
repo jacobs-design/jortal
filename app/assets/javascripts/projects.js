@@ -4,7 +4,6 @@ $(document).ready(function() {
     projectId = $(this).val();
     $("#submit-project-form").attr("action", "/projects/" + projectId + "/submissions");
     $.get(projectId, function(data) {
-        console.log(data.desc);
         $("textarea#submission_desc").val(data.desc);
       } , "json");
   });
@@ -18,5 +17,8 @@ $(document).ready(function() {
     } else {
       return true;
     }
+  });
+  $("#submission_attachment").change(function() {
+    $("#submission_filename").val($(this).val())
   });
 });
