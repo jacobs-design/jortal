@@ -25,14 +25,14 @@
               %span.btn.btn-primary.btn-file.btn-lg
                 Browse&hellip;
                 = file_field_tag 'submission[attachment]'
-            = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
+            = text_field_tag 'submission_filename', nil, readonly: true, class: 'form-control input-lg'
         - else
           .form-group.input-group
             %span.input-group-btn
               %span.btn.btn-primary.btn-file.btn-lg
                 Browse&hellip;
                 = file_field_tag 'submission[attachment]'
-            = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
+            = text_field_tag 'submission_filename', nil, readonly: true, class: 'form-control input-lg'
 
         .form-group
           = submit_tag 'Submit', class: 'btn btn-primary btn-lg btn-block'

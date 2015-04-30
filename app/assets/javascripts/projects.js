@@ -18,4 +18,7 @@ $(document).ready(function() {
       return true;
     }
   });
+  $("#submission_attachment").change(function() {
+    $("#submission_filename").val($(this).val())
+  });
 });
