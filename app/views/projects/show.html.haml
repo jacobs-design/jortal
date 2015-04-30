@@ -24,11 +24,11 @@
           %td= submission.name
           - if submission.like
             %td
-              = check_box_tag "#{submission.id}", like_path(@project, submission), true, :class => 'css-checkbox'
+              = check_box_tag "checkbox-#{submission.id}", like_path(@project, submission), true, :class => 'css-checkbox'
               = label_tag "", nil, :class => "css-label", :for => "#{submission.id}"
           - else
             %td
-              = check_box_tag "#{submission.id}", like_path(@project, submission), false, :class => 'css-checkbox'
+              = check_box_tag "checkbox-#{submission.id}", like_path(@project, submission), false, :class => 'css-checkbox'
               = label_tag "", nil, :class => "css-label", :for => "#{submission.id}"
           %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank", :id => "download_#{submission.id}", :class => "btn-default btn btn-primary"
   %br/
