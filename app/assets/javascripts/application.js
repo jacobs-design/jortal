@@ -15,12 +15,12 @@
 //= require jquery-readyselector
 //= require_tree .
 
-showForm = function(id) {
-  if (id == "") {
-    $('div#generate_form').text("");
-  } else {
-    $('body').append(
-      $('div#generate_form').load(id+'/submissions/new')
-    );
-  }
-};
+//showForm = function(id) {
+//  if (id == "") {
+//    $('div#generate_form').text("");
+//  } else {
+//    $('body').append(
+//      $('div#generate_form').load(id+'/submissions/new')
+//    );
+//  }
+//};

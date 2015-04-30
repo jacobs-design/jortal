@@ -1,4 +1,8 @@
 Jortal::Application.routes.draw do
+# get "errors/error_404"
+
+# get "errors/error_500"
+
   resources :users, :except => [:show, :new]
   resources :projects , :except => [:edit, :update] do
     resources :submissions, :except => [:index, :destroy]
@@ -14,6 +18,11 @@ Jortal::Application.routes.draw do
   get 'users/:id/projects', :to => 'users#projects', as: 'user_projects'
 
   post 'projects/:project_id/submission/:id/like', :to => 'submissions#like', as: 'like'
+
+# unless Rails.application.config.consider_all_requests_local
+  match '*not_found', to: 'errors#error_404'
+  match '/500', to: 'errors#error_500'
+# end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

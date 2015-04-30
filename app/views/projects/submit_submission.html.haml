@@ -1,20 +1,39 @@
-.container-full
+.container-fluid
   .row
     .col-lg-12.text-center.v-center
       %h1 Project Submission
+      %div{:class => "desc form-box center-block"}= "The Jacobs Institute for Design Innovation is Berkeley’s interdisciplinary hub for students, teachers and practitioners who love working at the intersection of design and technology. Did you design and build something amazing in Jacobs Hall? Do you want to show it off to the design community at Berkeley and beyond? Upload your best project documentation materials here for a chance to be showcased on the #{link_to 'Jacobs Institute website', 'http://jacobsinstitute.berkeley.edu/learn/student-projects/'}. If your project is selected, you will be notified before your materials are used. By submitting your project to this site, you agree to have your project featured publicly on the Jacobs website.".html_safe
+      %br/
+      %div{:class => "desc form-box center-block"}= "Got questions? Contact #{mail_to 'jacobsinstitute@berkeley.edu', 'jacobsinstitute@berkeley.edu'}".html_safe
+      %br/
       = form_tag nil, id: 'submit-project-form', class: 'form-box center-block', multipart: 'true' do
+        - if flash[:errors]
+          %h4.error_msg Fill out all the fields!
         .form-group
           = select_tag 'project', options_from_collection_for_select(@projects, 'id', 'name'), prompt: 'Select a class project...', id: 'project-select', class: 'form-control input-lg'
         .form-group
-          = text_field_tag 'submission[title]', nil, placeholder: 'Title', class: 'form-control input-lg'
-        .form-group
-          = text_area_tag 'submission[desc]', nil, placeholder: 'Description', rows: '3', class: 'form-control input-lg'
-        .form-group.input-group
-          %span.input-group-btn
-            %span.btn.btn-primary.btn-file.btn-lg
-              Browse&hellip;
-              = file_field_tag 'submission[attachment]'
-          = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
+          = text_area_tag 'submission[desc]', nil, readonly: true, placeholder: 'Project Description', rows: '5', class: 'form-control input-lg'
+        - if flash[:errors]
+          .form-group.field_with_errors
+            = text_field_tag 'submission[title]', nil, placeholder: 'Title', class: 'form-control input-lg'
+        - else
+          .form-group
+            = text_field_tag 'submission[title]', nil, placeholder: 'Title', class: 'form-control input-lg'
+        - if flash[:errors]
+          .form-group.input-group.field_with_errors
+            %span.input-group-btn
+              %span.btn.btn-primary.btn-file.btn-lg
+                Browse&hellip;
+                = file_field_tag 'submission[attachment]'
+            = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
+        - else
+          .form-group.input-group
+            %span.input-group-btn
+              %span.btn.btn-primary.btn-file.btn-lg
+                Browse&hellip;
+                = file_field_tag 'submission[attachment]'
+            = text_field_tag nil, nil, readonly: true, class: 'form-control input-lg'
+
         .form-group
           = submit_tag 'Submit', class: 'btn btn-primary btn-lg btn-block'
 

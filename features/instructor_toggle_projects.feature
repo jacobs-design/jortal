@@ -21,12 +21,12 @@ Background: the instructor is on the project submissions page listing some submi
 
 Scenario: toggle projects as an instructor
   Given I am on the projects page as "Jack Chou"
-  And I click on "View my projects only"
+  And I click on "View My Projects Only"
   Then I should not see "CS 666 Death Coding"
   And I should see "CS 188 Solving Pacman"
 
 Scenario: toggle projects as an admin
   Given I am on the projects page as "Arlan Jaska"
-  And I click on "View my projects only"
+  And I click on "View My Projects Only"
   Then I should not see "CS 188 Solving Pacman"
   And I should see "CS 666 Death Coding"
