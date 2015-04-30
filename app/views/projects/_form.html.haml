@@ -2,15 +2,8 @@
   = form_for(@project) do |f|
     - if @project.errors.any?
       %h4.error_msg Fill out all the fields!
-      #error_explanation
-        %h2
-          = pluralize(@project.errors.count, "error")
-          prohibited this project from being saved:
-        %ul
-          - @project.errors.full_messages.each do |msg|
-            %li= msg
     .form-group
-      = f.text_field :name, :placeholder => 'Name', :class => 'form-control input-lg'
+      = f.text_field :name, :placeholder => 'Project Name', :class => 'form-control input-lg'
     .form-group
       = f.text_area :desc, :placeholder => 'Description', :rows => 5, :class => 'form-control input-lg'
     .actions.form-group

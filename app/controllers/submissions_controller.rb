@@ -29,6 +29,7 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
+        puts "HELLO THANK YOU"
         redirect_to thank_you_path
         return
       else
