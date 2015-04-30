@@ -79,6 +79,7 @@ end
 Given /^the following submissions exist:$/ do |table|
   table.hashes.each do |submission|
     Submission.create(
+        name: submission[:name],
         title: submission[:title],
         desc: submission[:desc],
         project_id: submission[:project_id],

@@ -3,7 +3,7 @@
 .container-fluid
   %br/
   = button_to 'Back to Projects', projects_path, method: :get, class: "btn-default btn btn-primary"
-  %h1 Listing submissions for #{@project.name}
+  %h1 #{@project.name}
   %div=@project.desc
   %br/
   = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-default btn btn-primary"
@@ -21,7 +21,7 @@
         %tr{:class => "row-same-height lite"}
           %td= submission.title
           %td= submission.created_at
-          %td= 'submitter'
+          %td= submission.name
           - if submission.like
             %td= check_box_tag "#{submission.id}", like_path(@project, submission), :checked => true
           - else

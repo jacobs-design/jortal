@@ -7,7 +7,7 @@ describe SubmissionsController do
         CASClient::Frameworks::Rails::Filter.fake("991334")
         @project = Project.create(name: "CS169", desc: "saasbook")
         @project.users = [@user]
-        @submission = Submission.create(title: "swoject", desc: "super swole project", attachment: File.new(Rails.root + 'spec/fixtures/files/tester.txt'), project_id: @project.id)
+        @submission = Submission.create(name: "submittier", title: "swoject", desc: "super swole project", attachment: File.new(Rails.root + 'spec/fixtures/files/tester.txt'), project_id: @project.id)
     end
 
     describe 'new submission' do

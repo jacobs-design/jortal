@@ -15,6 +15,12 @@
           = text_area_tag 'submission[desc]', nil, readonly: true, placeholder: 'Project Description', rows: '5', class: 'form-control input-lg'
         - if flash[:errors]
           .form-group.field_with_errors
+            = text_field_tag 'submission[name]', nil, placeholder: 'Name', class: 'form-control input-lg'
+        - else
+          .form-group
+            = text_field_tag 'submission[name]', nil, placeholder: 'Name', class: 'form-control input-lg'
+        - if flash[:errors]
+          .form-group.field_with_errors
             = text_field_tag 'submission[title]', nil, placeholder: 'Title', class: 'form-control input-lg'
         - else
           .form-group

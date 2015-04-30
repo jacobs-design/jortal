@@ -18,6 +18,7 @@ Background: course exists and is ready for submissions
 Scenario: submit a project with all required fields present
 
     When I select "CS 169" from the dropdown menu
+    And I fill in "submission_name" with "No one"
     And I fill in "submission_title" with "My Cool Project"
     And I upload in "submission_attachment" with "test_files/test.txt"
     And I hit the Submit button
@@ -27,8 +28,16 @@ Scenario: submit a project with all required fields present
 Scenario: submit a project with missing required fields
 
     When I select "CS 186" from the dropdown menu
-    When I fill in "submission_title" with ""
+    And I fill in "submission_title" with "Blah blah blah"
     And I follow "Submit"
 
+    Then I should see "Fill out all the fields!"
+
+@javascript
+Scenario: submit a project without selecting a project
+
+    When I follow "Submit"
+
     Then I should be on the project submission page
+    And I should see "Select a Project!"
 
