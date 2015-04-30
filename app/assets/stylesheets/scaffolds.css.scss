@@ -7,7 +7,7 @@ html, body {
   height: 100%;
 }
 
-.container {
+.container#submission-page {
   max-width: 870px;
 }
 
@@ -57,8 +57,12 @@ pre {
   font-size: 11px;
 }
 
-a, a:hover {
+a {
   color: rgb(13, 160, 156);;
+}
+
+a:hover {
+  color: #fff;
 }
 
 div {
@@ -80,7 +84,7 @@ div {
 tr.lite {
   &:hover {
     color: #fff;
-    background-color: rgb(157, 189, 170);
+    background-color: #444;
   }
 }
 
@@ -116,6 +120,9 @@ td {
   }
 }
 
+input {
+  color: #000;
+}
 
 input[type=checkbox].css-checkbox {
   position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
