@@ -12,6 +12,7 @@ $("#users").ready(function () {
       new_row = "<tr class='users_form_row'>",
       i;
     for (i = 0; i < wanted_nodes.length; i++) {
+      console.log(wanted_nodes[i].outerHTML);
       new_row += "<td>";
       new_row += wanted_nodes[i].outerHTML;
       if (wanted_nodes[i].type === "hidden") {
@@ -22,6 +23,8 @@ $("#users").ready(function () {
     }
     new_row += "<td><a href='#' class='cancel'>Cancel</a></td></tr>";
     new_row = new_row.replace("Create", "Update");
+    new_row = new_row.replace("Add", "Edit");
+    
     return $.parseHTML(new_row);
   };
 

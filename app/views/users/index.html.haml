@@ -12,7 +12,8 @@
           %th{:class => "col-xs-1 col-xs-height col-full-height"} User Type
           %th{:class => "col-xs-1 col-xs-height col-full-height"}
           %th{:class => "col-xs-1 col-xs-height col-full-height"}
-          %th{:class => "col-xs-2 col-xs-height col-full-height"}
+          %th{:class => "col-xs-1 col-xs-height col-full-height"}
+          %th{:class => "col-xs-1 col-xs-height col-full-height hide"} ID
       %tbody.row
         - @users.each do |user|
           %tr{:class => "row-same-height lite"}
@@ -22,7 +23,8 @@
             %td{:class => "col-xs-1 col-xs-height col-full-height"}= user.admin ? 'Admin' : 'Instructor'
             %td{:class => "col-xs-1 col-xs-height col-full-height"}= link_to 'Edit', edit_user_path(user), :class => 'users_edit_button'
             %td{:class => "col-xs-1 col-xs-height col-full-height"}= link_to 'Remove', user, method: :delete, data: { confirm: 'Are you sure?' }
-            %td{:class => "col-xs-2 col-xs-height col-full-height"}= link_to 'Owned Projects', user_projects_path(user)
+            %td{:class => "col-xs-1 col-xs-height col-full-height"}= link_to 'Owned Projects', user_projects_path(user)
+            %td{:class => "col-xs-1 col-xs-height col-full-height hide"}= user.id
             //%td{:style => 'display: none;'}= user.id 
 
   %br/
