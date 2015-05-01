@@ -20,7 +20,8 @@ $("#users").ready(function () {
       }
       new_row += "</td>";
     }
-    new_row += "<td><a href='#' class='cancel'>Cancel</a></td></tr>";
+    new_row += "<td><a href='#' class='cancel'>Cancel</a></td>";
+    new_row += "<td></td></tr>";
     new_row = new_row.replace("Create", "Update");
     new_row = new_row.replace("Add", "Edit");
 
@@ -31,7 +32,7 @@ $("#users").ready(function () {
     // Fill in default values
     var form = generate_form_in_table(),
       i;
-    for (i = 0; i < form[0].children.length - 2; i++) {
+    for (i = 0; i < form[0].children.length - 3; i++) {
       var target = form[0].children[i].children[0];
       var source = table_row.children[i];
       // Handle checkboxes
