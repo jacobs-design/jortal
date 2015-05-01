@@ -25,19 +25,21 @@
             %td{:class => "col-xs-2 col-xs-height col-full-height"}= link_to 'Owned Projects', user_projects_path(user)
             //%td{:style => 'display: none;'}= user.id 
 
-  %br/
   //= link_to 'New User', new_user_path
-  = form_for(User.new) do |f|
-    = f.label :name
-    = f.text_field :name
+  = form_for User.new, :html => { :class => 'form-inline' } do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
 
-    = f.label :uid
-    = f.number_field :uid
+    .form-group
+      = f.label :uid
+      = f.number_field :uid, class: 'form-control'
 
-    = f.label :email
-    = f.text_field :email
+    .form-group
+      = f.label :email
+      = f.text_field :email, class: 'form-control'
 
     = f.label :admin
     = f.check_box :admin
 
-    = f.submit "Add User", :class => "btn-default btn btn-primary"
+    = f.submit 'Add User', :class => 'btn btn-primary'
