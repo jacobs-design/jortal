@@ -10,7 +10,7 @@ $(document).ready(function() {
   $("#submit-project-form").submit(function(e){
     if (!projectId) {
       if ($("h4.error_msg").length == 0) {
-        $('div.form-group').first().before("<h4 class='error_msg'>Select a Project!</h4>");
+        $('div.form-group').first().before("<h4 class='error_msg'>Select a project!</h4>");
       }
       e.preventDefault();
       return false;

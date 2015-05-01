@@ -7,7 +7,7 @@ html, body {
   height: 100%;
 }
 
-.container#submission-page {
+.container#narrow-form {
   max-width: 870px;
 }
 
@@ -161,8 +161,6 @@ h4.error_msg {
   padding: 10px;
   background-color: rgb(237, 104, 81);
   color: #fff;
-  text-decoration: underline;
-
 }
 
 input[type=checkbox].css-checkbox {
