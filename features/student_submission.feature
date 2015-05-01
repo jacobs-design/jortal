@@ -39,5 +39,5 @@ Scenario: submit a project without selecting a project
     When I follow "Submit"
 
     Then I should be on the project submission page
-    And I should see "Select a Project!"
+    And I should see "Select a project!"
 

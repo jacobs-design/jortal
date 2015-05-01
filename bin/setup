@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Set up Ruby dependencies
+bundle install
+
+# Figaro
+
+# PhantomJS
+
+# Set up database
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
+
