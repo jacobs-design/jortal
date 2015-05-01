@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+small test file
+=======
+small-sized test submission file
+>>>>>>> figaro
