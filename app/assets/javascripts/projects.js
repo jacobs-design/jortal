@@ -19,6 +19,6 @@ $(document).ready(function() {
     }
   });
   $("#submission_attachment").change(function() {
-    $("#submission_filename").val($(this).val())
+    $("#submission_filename").val($(this).val().replace('C:\\fakepath\\', ''))
   });
 });
