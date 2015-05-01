@@ -1,7 +1,9 @@
 .container-fluid
   %br/
   = link_to 'Back', projects_path, :class => 'btn-default btn btn-primary'
-  .row
-    .col-lg-12.text-center.v-center
-      %h1 New Project
-      = render 'form'
+  .container
+    .row
+      .col-lg-12.text-center.v-center
+        %h1 New Project
+        = render 'form'
+

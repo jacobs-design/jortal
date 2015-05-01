@@ -1,7 +1,8 @@
 .container-fluid
   %br/
-  = button_to 'Back to Projects', projects_path, method: :get, class: "btn-default btn btn-primary"
-  %h1 Listing users
+  = link_to 'Go to submission form', submit_submission_projects_path, class: "btn btn-primary"
+  = link_to 'Manage projects', projects_path, method: :get, class: "btn btn-primary"
+  %h1 Users
   = form_for :user, method: :put, :html => { :id => "users_table_form" } do |f|
     %table{:id => 'users', :class => "table"}
       %thead.row

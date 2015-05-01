@@ -1,8 +1,10 @@
 .container-fluid
+  %br/
+  = link_to 'Go to submission form', submit_submission_projects_path, class: "btn btn-primary"
+  = link_to 'Manage users', users_path, method: :get, class: "btn-default btn btn-primary"
   %h1= "Projects owned by #{@user.name}"
   = link_to 'Add Project', new_project_path, :id => "add_project", class: "btn-default btn btn-primary"
   = link_to 'View All Projects', projects_path, class: "btn-default btn btn-primary"
-  = link_to 'Manage Users', users_path, method: :get, class: "btn-default btn btn-primary"
 
   %table{:id => "projects", :class => "table"}
     %thead.row
