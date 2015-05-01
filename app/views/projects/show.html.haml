@@ -6,7 +6,7 @@
   %h1 #{@project.name}
   %div=@project.desc
   %br/
-  = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-default btn btn-primary"
+  = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure? All submissions to this project will be deleted!' }, class: "btn-default btn btn-primary"
   %br/
   %table{:class => "table"}
     %thead.row
