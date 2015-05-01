@@ -8,7 +8,7 @@ $("#users").ready(function () {
   }
 
   function generate_form_in_table() {
-    var wanted_nodes = $("#new_user > input"),
+    var wanted_nodes = $("#new_user > input, #new_user > .form-group > input"),
       new_row = "<tr class='users_form_row'>",
       i;
     for (i = 0; i < wanted_nodes.length; i++) {

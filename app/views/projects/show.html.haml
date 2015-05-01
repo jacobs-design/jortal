@@ -3,10 +3,10 @@
 .container-fluid
   %br/
   = button_to 'Back to Projects', projects_path, method: :get, class: "btn-default btn btn-primary"
-  %h1 Listing submissions for #{@project.name}
+  %h1 #{@project.name}
   %div=@project.desc
   %br/
-  = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-default btn btn-primary"
+  = button_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure? All submissions to this project will be deleted!' }, class: "btn-default btn btn-primary"
   %br/
   %table{:class => "table"}
     %thead.row
@@ -21,11 +21,15 @@
         %tr{:class => "row-same-height lite"}
           %td= submission.title
           %td= submission.created_at
-          %td= 'submitter'
+          %td= submission.name
           - if submission.like
-            %td= check_box_tag "#{submission.id}", like_path(@project, submission), :checked => true
+            %td
+              = check_box_tag "checkbox-#{submission.id}", like_path(@project, submission), true, :class => 'css-checkbox'
+              = label_tag "", nil, :class => "css-label", :for => "checkbox-#{submission.id}"
           - else
-            %td= check_box_tag "#{submission.id}", like_path(@project, submission)
+            %td
+              = check_box_tag "checkbox-#{submission.id}", like_path(@project, submission), false, :class => 'css-checkbox'
+              = label_tag "", nil, :class => "css-label", :for => "checkbox-#{submission.id}"
           %td= link_to 'Download', download_path(project_id: @project.id, id: submission.id), :target => "_blank", :id => "download_#{submission.id}", :class => "btn-default btn btn-primary"
   %br/
 
