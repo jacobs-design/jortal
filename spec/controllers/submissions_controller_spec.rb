@@ -49,13 +49,4 @@ describe SubmissionsController do
             post :create, :submission => {}, :project_id => @project.id
         end
     end
-
-    describe 'download a submission' do
-        it 'should successfully download a submission' do
-          controller.stub(:download)
-          controller.should_receive(:download)
-          controller.download
-        end
-    end
-
 end

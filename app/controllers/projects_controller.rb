@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
-  after_filter :verify_authorized, :except => [:submit_submission, :new, :create]
+  after_filter :verify_authorized, :except => [:submit_submission]
   respond_to :html, :json
 
   rescue_from Pundit::NotAuthorizedError, ActiveRecord::RecordNotFound, with: :redirect_to_submit_submission
@@ -25,28 +25,21 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    if is_user?
-      @project = Project.new
-      @project.users = [current_user]
+    @project = Project.new
+    authorize @project
+    @project.users = [current_user]
 
-      respond_with @project
-    else
-      redirect_to_submit_submission
-    end
+    respond_with @project
   end
 
   # POST /projects
   def create
-    if is_user?
-      @project = Project.new(params[:project])
-      @project.users = [current_user]
+    @project = Project.new(params[:project])
+    authorize @project
+    @project.users = [current_user]
 
-      flash[:notice] = 'Project was successfully created.' if @project.save
-      respond_with @project
-    else
-      redirect_to_submit_submission
-    end
-
+    flash[:notice] = 'Project was successfully created.' if @project.save
+    respond_with @project
   end
 
   # DELETE /projects/1
