@@ -95,7 +95,11 @@ td {
   padding:5px;
 }
 
-#notice, #warning {
+#notice {
+  color: yellow;
+}
+
+#warning {
   color: red;
 }
 

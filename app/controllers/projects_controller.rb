@@ -67,7 +67,7 @@ class ProjectsController < ApplicationController
 
   def redirect_to_submit_submission
     if is_user?
-      flash[:warning] = "You are not authorized to access this project."
+      flash[:warning] = "You are not authorized to access this page."
       redirect_to projects_url
     else
       redirect_to submit_submission_projects_url

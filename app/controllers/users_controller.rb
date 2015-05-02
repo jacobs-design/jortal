@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_filter CASClient::Frameworks::Rails::Filter
   after_filter :verify_authorized
+
+  rescue_from Pundit::NotAuthorizedError, ActiveRecord::RecordNotFound, with: :redirect_to_submit_submission
+
   respond_to :html, :json
 
   # GET /users
@@ -72,5 +75,14 @@ class UsersController < ApplicationController
     authorize @user
 
     @projects = @user.projects
+  end
+end
+
+def redirect_to_submit_submission
+  if is_user?
+    flash[:warning] = "You are not authorized to access this page."
+    redirect_to projects_url
+  else
+     redirect_to submit_submission_projects_url
   end
 end
