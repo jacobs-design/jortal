@@ -1,6 +1,6 @@
 class UserPolicy < ApplicationPolicy
     def index?
-        is_user?
+        is_admin?
     end
     def edit?
         is_admin?
