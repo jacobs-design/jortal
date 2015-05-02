@@ -95,8 +95,8 @@ td {
   padding:5px;
 }
 
-#notice {
-  color: green;
+#notice, #warning {
+  color: red;
 }
 
 #error_explanation {

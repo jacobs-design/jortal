@@ -46,6 +46,7 @@ class ProjectsController < ApplicationController
     else
       redirect_to_submit_submission
     end
+
   end
 
   # DELETE /projects/1
@@ -65,7 +66,12 @@ class ProjectsController < ApplicationController
   end
 
   def redirect_to_submit_submission
-    redirect_to submit_submission_projects_url
+    if is_user?
+      flash[:warning] = "You are not authorized to access this project."
+      redirect_to projects_url
+    else
+      redirect_to submit_submission_projects_url
+    end
   end
 
 end

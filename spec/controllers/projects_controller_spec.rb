@@ -48,6 +48,13 @@ describe ProjectsController do
       get :new
       expect(response).to render_template('new')
     end
+    context 'not a user' do
+      it 'redirects to the project submission form' do
+      CASClient::Frameworks::Rails::Filter.fake('1337')
+        get :new
+        expect(response).to redirect_to submit_submission_projects_path
+      end
+    end
   end
 #  describe 'GET #edit' do
 #    it 'renders the edit template' do
