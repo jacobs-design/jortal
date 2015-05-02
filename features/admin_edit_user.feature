@@ -35,7 +35,7 @@ Scenario: change user UID to another integer
   Then the uid of "Jack Chou" should be "12345"
 
 Scenario: change user name to a different name
-  Given I am on the users page as "Terry Tsai"
+  Given I am on the users page as "Arlan Jaska"
   When I change the name of "Jack Chou" to "Jack Black"
   Then I should see "Jack Black"
   And I should not see "Jack Chou"

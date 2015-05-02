@@ -79,7 +79,8 @@ class UsersController < ApplicationController
 end
 
 def redirect_to_submit_submission
-  if not current_user.admin
+  if current_user and not current_user.admin
+    puts current_user.admin
     flash[:warning] = "You are not authorized to access this page."
     redirect_to projects_url
   else
