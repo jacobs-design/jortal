@@ -13,8 +13,4 @@ class ApplicationController < ActionController::Base
     current_user
   end
 
-  def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || projects_url)
-  end
 end

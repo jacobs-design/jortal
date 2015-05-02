@@ -47,3 +47,6 @@ bower.json
 
 # Ignore RubyMine files
 .idea/
+
+# ignore tmp files
+public/uploads/tmp/*
